@@ -5,6 +5,8 @@
 \usepackage{amsmath, amssymb, amsthm} % AMS packages
 \usepackage{textcomp}
 \usepackage{color}
+\usepackage{booktabs}
+\usepackage{multirow}
 
 \definecolor{gray}{gray}{0.5}
 
@@ -762,58 +764,23 @@ An estimate of the model evidence is provided by the product of these terms.
 \section{Results}
 \label{Sec:Results}
 
-\begin{table}[t]
-\begin{center}
-\begin{tabular}{| c l | c l | c l |}
-\hline
-\multicolumn{2}{|c|}{SM91} & \multicolumn{2}{|c|}{T06} & \multicolumn{2}{|c|}{PP12} \\
-\hline
-$\gamma_P$ & $exp(1 \diagup 0.3)$ & $\gamma_P$ & $exp(1 \diagup 0.6)$ & $\gamma_P$ & $exp(1 \diagup 1.5)$ \\
-$\gamma_C$ & $exp(1 \diagup 0.3)$ & $\gamma_C$ & $exp(1 \diagup 0.6)$ & $\gamma_C$ & $exp(1 \diagup 1.5)$ \\
-$\gamma_E$ & $exp(1 \diagup 0.3)$ & $\gamma_E$ & $exp(1 \diagup 0.6)$ & $\gamma_E$ & $exp(1 \diagup 1.5)$ \\
-& & & & & \\
-$p$ & $\Gamma(2,1.2)$ & $p_0$ & $exp(1 \diagup 0.3)$ & $a$ & $\Gamma(8,0.1)$\\
-$q$ & $\Gamma(7,3)$ & $K$ & $exp(1 \diagup 0.1)$ & $a_d$ & $exp(1)$\\
-$r$ & $\Gamma(2,1.2)$ & $s$ & $exp(1 \diagup 0.3)$ & $a_g$ & $exp(1)$\\
-$s$ & $\Gamma(2,1.2)$ & $\alpha$ & $Beta(40,30)$ & $\kappa_P$ & $exp(1 \diagup 20)$ \\ 
-$v$ & $exp(1/0.3)$ & $x_l$ & $exp(1 \diagup 3)$ & $\kappa_C$ & $exp(1 \diagup 20)$ \\
-$\sigma_1$ & $exp(1 \diagup 0.3)$ & $x_u$ & $\Gamma(90,0.5)$ & $\kappa_E$ & $exp(1 \diagup 20)$ \\
-$\sigma_2$ & $exp(1 \diagup 0.3)$ & $\sigma_1$ & $exp(1 \diagup 2)$ & $\tau$ & $exp(1 \diagup 10)$ \\
-$\sigma_3$ & $exp(1 \diagup 0.3)$ & & & $v_0$ & $\Gamma(220,0.5)$ \\
-& & & & $v_1$ & $exp(1 \diagup 5)$\\
-& & & & $\sigma_1$ & $exp(1 \diagup 5)$ \\
-& & & & & \\
-$D$ & $\mathcal{U}(2.5,4.5)$ & $D$ & $\mathcal{U}(2.5,4.5)$ & $D$ & $\mathcal{U}(2.5,4.5)$ \\
-$S$ & $\mathcal{U}(0.25,1.25)$ & $S$ & $\mathcal{U}(0.02,0.05)$ & $S$ & $\mathcal{U}(0.01,0.03)$ \\
-$\sigma_y$ & $exp(1 \diagup 0.1)$ & $\sigma_y$ & $exp(1 \diagup 0.1)$ & $\sigma_y$ & $exp(1 \diagup 0.1)$ \\
-\hline
-\end{tabular}
-\label{Tab:Priors}
-\caption{List of priors for each model.
-Sections indicate parameters used to scale the astronomical forcing (absent in unforced models), parameters of the phenomenological model, and observation model respectively.}
-\end{center}
-\end{table}
 
-\begin{table}[t]
-\begin{center}
-\begin{tabular}{| l l | c c | c c |}
 
-\hline
-\multicolumn{2}{|c|}{Model} & \multicolumn{4}{|c|}{Evidence} \\
-\cline{3-6}
-& & SM91-u & SM91-f & ODP677-u & ODP677-f\\
-\hline
-SM91 & Forced & $5.6 \times 10^{28}$ & $1.4 \times 10^{41}$ & $4.0 \times 10^{24}$ & $1.1 \times 10^{28}$ \\
- & Unforced & $1.1 \times 10^{30}$ & $2.4 \times 10^{18}$ & $3.5 \times 10^{26}$ & $1.6 \times 10^{18}$ \\
-T06 & Forced & $3.6 \times 10^{20}$ & $2.6 \times 10^{30}$ & $3.3 \times 10^{25}$ & $4.5 \times 10^{29}$  \\
- & Unforced & $1.1 \times 10^{22}$ & $2.9 \times 10^{14}$ & $1.7 \times 10^{28}$ & $3.3 \times 10^{21}$  \\ 
-PP12 & Forced & $2.8 \times 10^{8}$ & $2.1 \times 10^{18}$ & $1.5 \times 10^{22}$ & $1.8 \times 10^{34}$  \\
-\hline
-\end{tabular}
-\caption{The model evidence for each model over different datasets.}
-\label{Tab:Evidence}
+\begin{center}
+\begin{LARGE}
+TABLE \ref{Tab:Priors} ABOUT HERE
+\end{LARGE}
 \end{center}
-\end{table}
+
+
+
+
+\begin{center}
+\begin{LARGE}
+TABLE \ref{Tab:Evidence} ABOUT HERE
+\end{LARGE}
+\end{center}
+
 
 \noindent It is important to assess the accuracy of these inference algorithms to gain confidence in the results when they are applied to real-world data.
 Here we use a simulation study to assess the performance and accuracy of SMC$^2$.
@@ -956,5 +923,92 @@ Likewise, multivariate observations could be used; SM91 models both ice-volume a
 \bibliographystyle{ieeetr}	% (uses file "plain.bst")
 \addcontentsline{toc}{chapter}{References}
 \bibliography{FullReferences}
+
+
+\begin{table}[t]
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+SM91 & T06 &PP12 \\
+\midrule
+$\gamma_P \sim exp(1 \diagup 0.3)$ & $\gamma_P\sim exp(1 \diagup 0.6)$ & $\gamma_P\sim exp(1 \diagup 1.5)$ \\
+$\gamma_C\sim exp(1 \diagup 0.3)$ & $\gamma_C\sim exp(1 \diagup 0.6)$ & $\gamma_C\sim exp(1 \diagup 1.5)$ \\
+$\gamma_E\sim exp(1 \diagup 0.3)$ & $\gamma_E\sim exp(1 \diagup 0.6)$ & $\gamma_E\sim exp(1 \diagup 1.5)$ \\
+&  & \\
+$p\sim \Gamma(2,1.2)$ & $p_0\sim exp(1 \diagup 0.3)$ & $a\sim \Gamma(8,0.1)$\\
+$q\sim \Gamma(7,3)$ & $K\sim exp(1 \diagup 0.1)$ & $a_d\sim exp(1)$\\
+$r\sim \Gamma(2,1.2)$ & $s\sim exp(1 \diagup 0.3)$ & $a_g\sim exp(1)$\\
+$s\sim \Gamma(2,1.2)$ & $\alpha\sim Beta(40,30)$ & $\kappa_P\sim exp(1 \diagup 20)$ \\ 
+$v\sim exp(1/0.3)$ & $x_l\sim exp(1 \diagup 3)$ & $\kappa_C\sim exp(1 \diagup 20)$ \\
+$\sigma_1\sim exp(1 \diagup 0.3)$ & $x_u\sim \Gamma(90,0.5)$ & $\kappa_E\sim exp(1 \diagup 20)$ \\
+$\sigma_2\sim exp(1 \diagup 0.3)$ & $\sigma_1\sim exp(1 \diagup 2)$ & $\tau\sim exp(1 \diagup 10)$ \\
+$\sigma_3\sim exp(1 \diagup 0.3)$ & & $v_0 \sim \Gamma(220,0.5)$ \\
+& &  $v_1\sim exp(1 \diagup 5)$\\
+& &  $\sigma_1\sim exp(1 \diagup 5)$ \\
+&   & \\
+$D\sim \mathcal{U}(2.5,4.5)$ & $D\sim \mathcal{U}(2.5,4.5)$ & $D\sim \mathcal{U}(2.5,4.5)$ \\
+$S\sim \mathcal{U}(0.25,1.25)$ & $S\sim \mathcal{U}(0.02,0.05)$ & $S\sim \mathcal{U}(0.01,0.03)$ \\
+$\sigma_y\sim exp(1 \diagup 0.1)$ & $\sigma_y\sim exp(1 \diagup 0.1)$ & $\sigma_y\sim exp(1 \diagup 0.1)$ \\
+\bottomrule
+\end{tabular}
+\label{Tab:Priors}
+\caption{List of priors for each model.
+Sections indicate parameters used to scale the astronomical forcing (absent in unforced models), parameters of the phenomenological model, and observation model respectively.}
+\end{center}
+\end{table}
+
+
+
+\begin{table}[t]
+\begin{center}
+\begin{tabular}{ l l  c c  c c }
+\toprule
+\multicolumn{2}{c}{Model} & \multicolumn{4}{c}{Dataset} \\
+%\cline{3-6}
+& & SM91-u & SM91-f & ODP677-u & ODP677-f\\
+\midrule
+SM91 & Forced & $66.2$ & $94.7$ & $56.6$ & $64.6$ \\
+ & Unforced & $69.2$ & $42.3$ & $61.1$ & $41.9$ \\
+T06 & Forced & $47.3$ & $70.0$ & $58.8$ & $ 68.3$  \\
+ & Unforced & $50.8$ & $33.3$ & $65.0$ & $49.5$  \\ 
+PP12 & Forced & $19.5$ & $42.2$ & $51.1$ & $78.9$  \\
+\bottomrule
+\end{tabular}
+\caption{WARNING: rounding errors here as I've taken Jake's Z value to two dp and logged it.
+The log model evidences  for each model and dataset. The four datasets are i) SM91-u: data simulated from an unforced version of SM91 ii) SM91-f: data simulated from a forced version of SM91 iii) ODP677-u: real data from the ocean drilling programme dated by \cite{?} using a non-astro... iv) ...  
+The difference between any two numbers in a given column gives the log Bayes factor for comparing the two models.
+QUESTION: Would it be better to give the log BF compared to a particular model (the best? the worst?).
+}
+\label{Tab:Evidence}
+\end{center}
+\end{table}
+
+
+
+%
+%\begin{table}[t]
+%\begin{center}
+%\begin{tabular}{| l l | c c | c c |}
+%
+%\hline
+%\multicolumn{2}{|c|}{Model} & \multicolumn{4}{|c|}{Evidence} \\
+%\cline{3-6}
+%& & SM91-u & SM91-f & ODP677-u & ODP677-f\\
+%\hline
+%SM91 & Forced & $5.6 \times 10^{28}$ & $1.4 \times 10^{41}$ & $4.0 \times 10^{24}$ & $1.1 \times 10^{28}$ \\
+% & Unforced & $1.1 \times 10^{30}$ & $2.4 \times 10^{18}$ & $3.5 \times 10^{26}$ & $1.6 \times 10^{18}$ \\
+%T06 & Forced & $3.6 \times 10^{20}$ & $2.6 \times 10^{30}$ & $3.3 \times 10^{25}$ & $4.5 \times 10^{29}$  \\
+% & Unforced & $1.1 \times 10^{22}$ & $2.9 \times 10^{14}$ & $1.7 \times 10^{28}$ & $3.3 \times 10^{21}$  \\ 
+%PP12 & Forced & $2.8 \times 10^{8}$ & $2.1 \times 10^{18}$ & $1.5 \times 10^{22}$ & $1.8 \times 10^{34}$  \\
+%\hline
+%\end{tabular}
+%\caption{The model evidence for each model over different datasets.}
+%\label{Tab:Evidence}
+%\end{center}
+%\end{table}
+%
+
+
+
 
 \end{document}
