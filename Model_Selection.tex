@@ -781,7 +781,7 @@ We simulate a single random trajectory from a given model and parameter setting 
 We present results from analysing two simulated datasets: one in which data are generated from an unforced version of SM91, and one in which a forced version of SM91 is used. 
 We refer to these datasets as SM91-u and SM91-f respectively. The parameters used are given in Table \ref{Tab:EvidenceSS} and are comparable to those estimated from real data. Crucially, realistic values of the measurement error variance are used. 
 Observations are taken every $3$kyr over the past $780$kyr giving 261 observations in each dataset, which  is comparable to a  low resolution sediment core.
-The model evidence and posteriors are then calculated for  each of five models. We use a forced and unforced version of SM91 and T06, as well as the forced model PP12. We do not consider an unforced PP12 model as the deglatiation-glaciation transition depends only on the astronomical forcing, whereas SM91 and T06 both oscillate in the absence of any external forcing. The models contain between 10 and 16 parameters. We then test the ability of  our inference algorithms to 1) discriminate between the five models by  using estimates of the Bayes factors; 2) recover the parameters used to generate the data; and 3) reconstruct the underlying climate trajectories $x_{1:T}$.
+The model evidence and posteriors are then calculated for  each of five models. We use  forced and unforced versions of SM91 and T06, as well as the forced model PP12. We do not consider an unforced PP12 model as the deglatiation-glaciation transition depends only on the astronomical forcing, whereas SM91 and T06 both oscillate in the absence of any external forcing. The models contain between 10 and 16 parameters. We then test the ability of  our inference algorithms to 1) discriminate between the five models by  estimating  the Bayes factors; 2) recover the parameters used to generate the data; and 3) reconstruct the underlying climate trajectories $x_{1:T}$.
 The priors used for each model are given in Table~\ref{Tab:Priors}.
 
 
@@ -795,22 +795,21 @@ TABLE \ref{Tab:Priors} ABOUT HERE
 
 The estimated log Bayes factors (log BF) 
  are given in Table~\ref{Tab:EvidenceSS}. 
-The  Bayes factor of two models is the ratio of the model evidences. However, the logarithm of the Bayes factor provides a more natural scale for interpretation, with the log BF calculated as the difference between two log evidences. Thus, it is only relative differences in the log evidences that matter, and this is what is reported in Table~\ref{Tab:Evidence}.
-A common interpretation of Bayes factors suggests that a log BF of 3 is strong evidence in favour  of one model over another, and that a log BF of 5 is a very strong indication that one model is superior to another \cite{Kass1995}. A score of $-5$ suggests very strong evidence in favour of the other model.
+The  Bayes factor of two models is the ratio of the model evidences. However, the logarithm of the Bayes factor provides a more natural scale for interpretation, with the log BF calculated as the difference between two log evidences, and this is what is reported in Table~\ref{Tab:EvidenceSS}.
+A common interpretation suggests that a log BF of 3 is strong evidence in favour  of one model over another, and that a log BF of 5 is a very strong indication that one model is superior to another \cite{Kass1995}. Conversely, a negative score indicates the same strength of evidence but in the other direction (for the other model).
+
+For both simulated datasets, we find a strong preference for the correct model.
+When applied to SM91-f, the correct model (the forced SM91 model) is overwhelmingly favoured. The log BF to the next most supported model (the forced T06 model) is estimated to be 24.7,  indicating decisive evidence in favour of the true model.
+It is interesting to note that if we remove the forced SM91 model from the analysis, we find decisive evidence in favour of the forced T06 model over any of the other unforced models (a log BF of at least 27.7), showing that the astronomical forcing has explanatory power even in the wrong model. This is not particularly surprising, because in both models the astronomical forcing acts as a synchronisation agent, controlling the timing of terminations, and has a strong effect on the likelihood. This is reassuring. It means that palaeoclimate scientists can implicitly rely upon this effect when arguing for the importance of the astronomical forcing, as it allows us to infer its importance even when using an incorrect simulator (for we surely are). \rdw{Does this make sense -  it may be a little strong.}
 
 
-For both simulated datasets, the data we prefer the correct model.
-When applied to SM91-f the correct model (the forced SM91 model) is overwhelmingly favoured. The log BF to the next most supported model (the forced T06 model) is estimated to be 24.7,  indicating decisive evidence in favour of the true model.
-It is interesting to note that if we remove the forced SM91 model from the analysis, we find decisive evidence in favour of the forced T06 model over any of the other unforced models (a log BF of at least 27.7), showing that the astronomical forcing has explanatory power even in the wrong model. This is not particularly surprising, because in both models the astronomical forcing acts as a synchronisation agent, controlling the timing of terminations, and has a strong effect on the likelihood. This is reassuring. It means that palaeoclimate scientists can implicitly rely upon this effect when arguing for the importance of the astronomical forcing, as it allows us to infer its importance even when using an incorrect simulator (which we surely are). \rdw{I've added this thought - may be a little strong.}
+When applied to SM91-u the log BF again correctly identifies the correct generative model, although the support for the unforced and forced SM91 models is now much closer (with a log BF of 2.9 in favour of the unforced model). In cases where the forcing does not add any explanatory power this is an expected result, as the unforced version of SM91 is nested within the forced version of SM91, and is recovered by setting $\gamma_P = \gamma_C = \gamma_E = 0$. This effect is also noticeable when comparing the forced and unforced T06 models, with the unforced version being preferred with a log BF of 3.5. 
 
-
-When applied to SM91-u the log BF again correctly identifies the correct generative model, although the support for the unforced and forced SM91 models is now much closer (with a log BF of 2.9 in favour of the unforced model). In cases where the forcing does not add any explanatory power this is an expected result, as the unforced version of SM91 is nested within the forced version of SM91, and recovered by setting $\gamma_P = \gamma_C = \gamma_E = 0$. Because of this nesting, it is always going to be harder to detect whether we need the more general model (with small but non-zero values of the $\gamma$ parameters), or whether the simpler model will suffice (demonstrating the Occam's razor type property of Bayes factors).
-This effect is also noticeable when comparing the forced and unforced T06 models, with the unforced version being preferred with a log BF of 3.5. 
-
-Note that these experiments shows clearly that we can easily detect the correct parametric form of the simulator in each case. We need to be careful when using Monte Carlo estimates of the model evidences, as the Monte Carlo error can be considerable.
+These experiments clearly show  that there is  sufficient information in the data to easily detect the correct parametric form of the simulator in each case. Care needs to be taken when using Monte Carlo estimates of the model evidences, as the Monte Carlo error can be considerable.
 Experimentation suggests that the model evidence estimates have a variance of approximately an order of magnitude, and hence the log Bayes factors should be viewed as having uncertainty of approximately plus or minus 6 on the log scale.
-We suggest that we can only be confident that there is strong evidence for one model over another if the estimated log BF is at least 10. Note that in most cases the conclusions in the simulation study would be unaffected by this noise. 
-The magnitude of the estimation error can be decreased by using more particles in the SMC$^2$ algorithm, but this can require very long computational runs (using $N=1000$.... JAKE CAN YOU SORT - takes ??? hours on a GPU.....).
+We thus suggest that we can only be confident that there is strong evidence for one model over another if the estimated log BF is at least 10. Note that our conclusions from the simulation study are mostly unaffected by this noise, aside from further confirming that the difference between the forced and unforced version of the same parametric model is small. 
+The magnitude of the estimation error can be decreased by using more particles in the SMC$^2$ algorithm, but this will require very long computational runs. uUsing $N_x=N_\theta=1000$.... JAKE CAN YOU SORT - takes ??? hours on a GPU..... and the cost increases as $O(N_x^2)$????. Nested sampling \cite{Skilling2006} is an alternative approach to estimating BFs that allows for easier estimation of sampling uncertainty. However, implementing nested sampling for intractable models with a large number of missing values (as in this case, where the trajectories are `missing data') has not yet proven possible, but if it can be made to work, would be worth pursing.
+ 
 \mcr{although this discussion avoids the problem of the robustness vs the choice of priors, especially if the latter are vague}
 
 
@@ -826,7 +825,7 @@ TABLE \ref{Tab:EvidenceSS} ABOUT HERE
 The marginal posterior distributions for the parameters for the forced SM91 model applied to the SM91-f dataset are shown in Figure~\ref{Fig:PosteriorSS}.
 We are able to recover the parameters used to generate the data, with the true values lying in regions of high posterior probability.
 The posteriors for $q$ and $\sigma_3$ do not deviate much from the prior, suggesting that a wide range of values explain the data equally well.
-Further examples are available in \cite{Carson2014}.
+Further simulation studies and details are available in \cite{Carson2014}.
 
 
 \begin{center}
@@ -840,36 +839,41 @@ Figure \ref{Fig:PosteriorSS} about here.
 
 \rdw{Can you add a plot showing the three SM91 trajectories, with the MC confidence interval, and the data from $y_1$. I think this would help illustrate, even if it is likely to end up in supplementary material.}
 
-\subsection{ODP}
+\subsection{ODP677}
+\rdw{We need more detail on the data here.}
 
-We repeat this experiment on data from ODP677 with a depth-derived age model \cite{Huybers2007} (ODP677-u) and an orbitally-tuned age model \cite{Lisiecki2005} (ODP677-f).
-The priors are kept the same as from the simulation study and the model evidence estimates for each model are given in Table~\ref{Tab:Evidence}.
+We now analyse data from the ocean drilling programme (ODP). We focus here on ODP677, which is......JAKE..., which is of interest because it has been dated by two different groups. Analysis of other datasets can be found in \cite{Carson2014}. When an ocean core is first extracted and analysed, the measurements are a sequence of proxy measurements ($\delta ^{18}O$????) corresponding to different depths in the core. The core is then dated through the use of an age-model. When different age models are used, they can give slightly different chronologies for the same core. ODP677 is interesting in this regard, as it has been dated by two different groups. In \cite{Huybers2007}, a depth-derived age model is used.  `Age-control points' are identified in the core (such as glacial terminations, magnetic reversals, etc), and then ages for all the measurements are inferred from these control points, while accounting for compression   in an involved heuristic process. We will refer to the data from this study as ODP677-u, where the `u' denotes {\it unforced}. In  \cite{Lisiecki2005}, the core is dated using an orbitally-tuned age model. They assume that the astronomical forcing is correlated with ....... JAKE/MICHEL - can you provide a description here. We refer to this dataset as OPD677-f, where the `f' denotes that the data have been tuned using the astronomical forcing.
+
+The estimated log Bayes factors for each model are given in Table~\ref{Tab:EvidenceODP}. 
+For ODP677-u, the unforced T06 model is best supported, but the estimated BF for the unforced T06 model compared to the unforced SM91 model is within our Monte Carlo bounds, and so it is not possible to confidently assert that T06 is superior to SM91 for explaining these data. There is reasonable to strong evidence (given our Monte Carlo uncertainty) that the unforced models are preferred to the forced model, i.e., there is reasonable evidence that we do not need an astronomically forced model to explain the data. This resembles the results from SM91-u, where the forced models are being penalised for containing extra parameters with little explanatory power. Note that the two unforced models are both decisively preferred compared to PP12.
+
 
 \begin{center}
 \begin{LARGE}
-Figure \ref{Fig:Posterior2} about here.
+TABLE \ref{Tab:EvidenceODP} ABOUT HERE
 \end{LARGE}
 \end{center}
 
 
-
-For ODP677-u unforced SM91 and unforced T06 are slightly more supported by the data than the forced versions.
-This resembles the results from SM91-u, where the forced models are being penalised for containing extra parameters with little explanatory power.
-Between SM91 and T06 the Bayes factor indicates that T06 is more supported by the data.
-A Bayes factor of 50 is within our Monte Carlo error, and so the result is not a strong one.
-However, as T06 contains one fewer parameter than SM91 a higher model evidence is expected in T06.
-Both SM91 and T06 are preferred over PP12, with a reasonably strong Bayes factor.
-
-Interestingly, for ODP677-f PP12 is the most favoured model, with a Bayes factor of $\sim 3 \times 10^4$ over the next most preferred model.
-The fact that ODP677-f is orbitally tuned is the most likely explanation for this.
+When we analyse ODP677-f, the astronomically tuned data, the results are the complete reverse. We now find that the PP12 model is strongly indicated by the data, and that the three forced models are all decisively preferred to the two unforced models, i.e., we find overwhelming evidence using these data that astronomical forcing is necessary to explain the data!
+The orbital tuning of ODP677-f is the most likely explanation for this.
 In SM91 and T06 the astronomical forcing acts similarly as a pacemaker, controlling the timing of glacial inceptions and terminations. 
 While in PP12 the astronomical forcing dictates the transition from the glaciated state to the deglaciated state.
-As such we might expect the output of PP12 to be more strongly correllated to the astronomical forcing in a similar fashion to ODP677-f.
+As such, we might expect the output of PP12 to be more strongly correlated to the astronomical forcing in a similar fashion to ODP677-f.
 Forced SM91 and forced T06 are both more supported than the unforced versions, with strong Bayes factors.
 Again it is difficult to determine if T06 is more supported by the data than SM91.
-This result shows that inference is affected by the age-model used, and that modelling assumptions in the dating methods should be understood when performing inference on palaeoclimate data.
 
-For comparison the marginal parameter posteriors are shown in Figure~\ref{Fig:Posterior}.
+
+This result is our second key finding. Namely, that inference about the best model is strongly affected by the age-model used to date the data. It is vital that modelling assumptions in the dating methods should be understood when performing inference on palaeoclimate data. We suggest that this demonstrates that the approach of first dating the data, and then carrying out down-stream analyses given this dating, ignoring the uncertainty, is at best harmful, and at worst, completely undermines any subsequent inference about the dynamic mechanisms at play.
+
+
+\begin{center}
+\begin{LARGE}
+Figure \ref{Fig:PosteriorODP} about here.
+\end{LARGE}
+\end{center}
+
+The marginal posterior distributions of the parameters in the SM91 model when fit to the ODP677-f data are shown in Figure~\ref{Fig:PosteriorODP}.
 The astronomical forcing scaling parameters $\gamma_P$ and $\gamma_E$ have very small posterior probabilities at 0, suggesting that both precession and obliquity are informative about ODP677-f.
 The scaling parameter for obliquity is typically larger than that for precession.
 On the other hand for the coprecession parameter $\gamma_C$, 0 is in a region of very high posterior probability, indicating that a model selection experiment might support a forced model without coprecession.
@@ -907,37 +911,46 @@ In particular Richard has some comments on using summary statistics.
 \end{itemize}
 
 \section{Conclusions}
-\mcr{I believe one outstanding problem when we arrive to this conclusio is that the palaeclimatic conclusions all sound a bit naive. Remember that the SM90 model is a bit ancient, and that the T06 model rests an a controversial mechanism, and, again, in both cases, we are more discriminating the dynamics than the actual mechanisms that are featured by these models. With a benthic foram core, it seems indeed a bit overstretch to claim discerning the difference between a g/i mechanism resting on biogeochemical instability, and one resting on a sea-ice switch mechanism. We have to be careful not to be interpreted in this way. One necessary (and not sufficient) condition for appreciating the role of biogeochemistry or sea-ice (if we want to speak of these two models in particular) is to actually have data about these physical entities. 
-On the other hand, looking at the amount of code, notes written etc. that Jake and other of us have delivered in the last four years, we must have the material to say a bit more about our experience in model selection. E.g.: how many particles do we need? What is the rate of convergence? What is the improvement provided by the Golighty-Wilkinson algorithm : was it necessary to use this proposal? How did Jake chose the MH proposal when resampling particles? etc. All these elements are essential because if we admit that this was a ``simple" problem using after all oversimplified models, the merit of our experience is that it allows us to envision how this work can be extended to more data (mean : CO2, ice volume, methane, \ldots) and more physically explicit models. A few comments are inlined, but really we need to give this more thought. }
 \label{Sec:Conclusion}
 
- This contrasts strongly with the viewpoint commonly held by those in the community. In \cite{Roe1999}, this was expressed as follows: 
+
+When we began this work, it was with the hope of contributing towards answering the scientific question of determining the degree of influence of the astronomical forcing on  the glacial-interglacial cycle. That is not what we have achieved here. Instead, we have two key conclusions.
+
+The first is that Monte Carlo technology and computer power are now both sufficiently advanced, that with work, it is possible to fully solve the Bayesian model selection problem for a wide class of phenomenological models of the glacial-interglacial cycle. It came as a surprise to us, and we believe it will to others, that even relatively short time-series of observations contain enough information to discriminate between many of the models. A priori, we had expected to find that there was simply insufficient information in the data, given the level of noise, to solve simultaneously the filtering and the model calibration problems, and then still distinguish between the models. That we are able to do this, contrasts strongly with the common viewpoint 
+set out in \cite{Roe1999}:
+
+
 
 \begin{quote}
 Most simple models of the [...] glacial cycles have at least four degrees of freedom [parameters], and some have as many as twelve. Unsurprisingly [...this is] insufficient to distinguish between the skill of the various models
 \end{quote}
 
-This viewpoint was true a few years ago, when parameter inference in these models was all but impossible, never mind the estimation of Bayes factors. However, recently developments in Monte Carlo methodology, and the massive increase in computing power (including the utilisation of GPUs), means that the calculations need and now possible. Here, using only 261 observations, we are able to learn up to 16 parameters, and state trajectories  containing $261\times 3$ values, for each of 5 models, and then calculate the marginal evidence to be able to discriminate between the models. 
+In 1999 this viewpoint was true. We lacked both the computer power and the algorithmic knowledge to do Bayesian inference of the  parameters, never mind  estimating the Bayes factors. However, recently developments in Monte Carlo methodology, and the massive increase in computing power (including the utilisation of GPUs), means that the calculations need and now possible. Here, using only 261 observations, we are able to learn up to 16 parameters, and state trajectories  containing $261\times 3$ values, for each of 5 models, and then calculate the marginal evidence to be able to discriminate between the models. 
 
 \rdw{This discussion could perhaps be split between the intro and the conclusion. We don't want to be too critical of Roe and Allen, but we do want to stress why this work is cool!}
 
+Our second conclusion concerns the need to avoid theory laden data. The results from analysing data from ODP677 show that the age model used to date the core become critical when the data are used to make scientific judgements. One age model gives overwhelming evidence that the astronomical forcing is vital for explaining the data, while another age model suggests the opposite. This suggests that analysing the data in stages, cutting feedbacks between uncertainties, is not feasible. Instead of first dating the core, and then using those dates (with or without uncertainties), we instead need to jointly estimate the age model at the same time as testing further hypotheses, accounting for all the joint uncertainties. While this observation is not new, we believe it is the first time the effect of the age model has been so clearly demonstrate on subsequent analyses.
+
+
+\mcr{I believe one outstanding problem when we arrive to this conclusio is that the palaeclimatic conclusions all sound a bit naive. Remember that the SM90 model is a bit ancient, and that the T06 model rests an a controversial mechanism, and, again, in both cases, we are more discriminating the dynamics than the actual mechanisms that are featured by these models. With a benthic foram core, it seems indeed a bit overstretch to claim discerning the difference between a g/i mechanism resting on biogeochemical instability, and one resting on a sea-ice switch mechanism. We have to be careful not to be interpreted in this way. One necessary (and not sufficient) condition for appreciating the role of biogeochemistry or sea-ice (if we want to speak of these two models in particular) is to actually have data about these physical entities. 
+On the other hand, looking at the amount of code, notes written etc. that Jake and other of us have delivered in the last four years, we must have the material to say a bit more about our experience in model selection. E.g.: how many particles do we need? What is the rate of convergence? What is the improvement provided by the Golighty-Wilkinson algorithm : was it necessary to use this proposal? How did Jake chose the MH proposal when resampling particles? etc. All these elements are essential because if we admit that this was a ``simple" problem using after all oversimplified models, the merit of our experience is that it allows us to envision how this work can be extended to more data (mean : CO2, ice volume, methane, \ldots) and more physically explicit models. A few comments are inlined, but really we need to give this more thought. }
 
 
 
+%
+%We have presented a principled inference approach for assimilating palaeclimate observations in to phenomenological models of the cliamte.
+%We have shown how Bayesian model selection can be used to study a variety of problems in paleaoclimatology. 
+%\mcr{yeeano :  we focused on a quite specific problem to be honest}
+%The results are very much age-model dependent, with forced models being favoured when the data has been astronomically tuned.
+%This is not a surprising find, but shows that caution is necessary when performing inference on palaeoclimate data \mcr{sure,\dots but that we new already}
+%Choosing between phenomenological models is more challenging, supporting the notion that any sufficiently non-linear model can resemble the glacial-interglacial cycle over the past 800 kyr when synchronised with the astronomical forcing \cite{Cane2006,Tziperman2006}.
+%However, it is worth noting that the favoured phenomenological model was also age-model dependent.
+%We have also shown how the same approach can calibrate phenomenogical models of the climate, which is a difficult problem when stochastic perturbations are included.
 
-\noindent In this paper we have presented a principled inference approach for assimilating palaeclimate observations in to phenomenological models of the cliamte.
-We have shown how Bayesian model selection can be used to study a variety of problems in paleaoclimatology. 
-\mcr{yeeano :  we focused on a quite specific problem to be honest}
-The results are very much age-model dependent, with forced models being favoured when the data has been astronomically tuned.
-This is not a surprising find, but shows that caution is necessary when performing inference on palaeoclimate data \mcr{sure,\dots but that we new already}
-Choosing between phenomenological models is more challenging, supporting the notion that any sufficiently non-linear model can resemble the glacial-interglacial cycle over the past 800 kyr when synchronised with the astronomical forcing \cite{Cane2006,Tziperman2006}.
-However, it is worth noting that the favoured phenomenological model was also age-model dependent.
-We have also shown how the same approach can calibrate phenomenogical models of the climate, which is a difficult problem when stochastic perturbations are included.
-
-The experiments included in this paper can be extended in a number of ways.
+The experiments included in this paper can be extended in several ways.
 Firstly, we consider only a handful of models, and all with the same modelling approach.
 The number of models can be increased, and more complex models can be considered.
-With the approach described here extra models can be included by running the SMC$^2$ algorithm for each model.
+With the approach described here, extra models can be included by running the SMC$^2$ algorithm for each model.
 This has the benefit that the entire experiment does not need to be redesigned/repeated for different combinations of models.
 Different astronomical forcing set-ups can also be considered.
 For example, the astronomical forcing terms are often tested independently.
@@ -955,7 +968,9 @@ Likewise, multivariate observations could be used; SM91 models both ice-volume a
 \bibliography{FullReferences}
 
 
-\begin{table}[t]
+
+\clearpage
+\begin{table}
 \begin{center}
 \begin{tabular}{lll}
 \toprule
@@ -982,14 +997,18 @@ $\sigma_y\sim \operatorname{Exp}(1 \diagup 0.1)$ & $\sigma_y\sim \operatorname{E
 \bottomrule
 \end{tabular}
 \label{Tab:Priors}
-\caption{Prior distributions for each model.
-Sections indicate parameters used to scale the astronomical forcing (absent in unforced models), parameters of the phenomenological model, and observation model respectively.}
+\caption{Prior distributions used for each model in both the simulation study and the analysis of ODP677.
+Sections indicate parameters used to scale the astronomical forcing (absent in unforced models), parameters of the phenomenological model, and observation model respectively.
+JAKE/MICHEL - can we say something about how these priors were chosen.
+}
 \end{center}
 \end{table}
 
 
+\clearpage
 
-\begin{table}[t]
+
+\begin{table}
 \begin{center}
 \begin{tabular}{ l l  c c }
 \toprule
@@ -1015,6 +1034,34 @@ WARNING: rounding errors here as I've taken Jake's Z value to two dp and logged 
 \end{table}
 
 
+
+\clearpage
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{ l l  c c  }
+\toprule
+\multicolumn{2}{c}{Model} & \multicolumn{2}{c}{Dataset} \\
+%\cline{3-6}
+& & ODP677-u & ODP677-f\\
+\midrule
+SM91 & Forced &  $-8.4$ & $-14.3$ \\
+ & Unforced &  $-3.9$ & $-37.0$ \\
+T06 & Forced & $-6.2$ & $ -10.6$  \\
+ & Unforced &  $0$ & $-29.4$  \\ 
+PP12 & Forced & $-13.9$ & $0$  \\
+\bottomrule
+\end{tabular}
+\caption{
+The estimated log BFs for the five different models. The Bayes factors are given in comparison to the best model for each dataset (which thus has a log BF of zero).
+The ODP677 dataset is analysed twice. ODP677-u refers to a dating model derived by \cite{Huybers2007} using a depth derived model, whereas ODP677-f is an astronomically tuned dating model described in \cite{Lisiecki2005}.
+Values of the log evidence can be reconstructed using the estimates  $\log Z=65.0$ for the unforced version of T06 on the ODP677-u dataset, and that $\log Z = 78.9$ for the PP12 model on the ODP677-f dataset. The prior distributions used are given in Table \ref{Tab:Priors}.
+WARNING: rounding errors here as I've taken Jake's Z value to two dp and logged it. Values of the log evidence
+}
+\label{Tab:EvidenceODP}
+\end{center}
+\end{table}
 
 
 %
@@ -1044,69 +1091,96 @@ WARNING: rounding errors here as I've taken Jake's Z value to two dp and logged 
 %\end{center}
 %\end{table}
 %
+%
+%\begin{table}[t]
+%\begin{center}
+%\begin{tabular}{ l l  c c  c c }
+%\toprule
+%\multicolumn{2}{c}{Model} & \multicolumn{4}{c}{Dataset} \\
+%%\cline{3-6}
+%& & SM91-u & SM91-f & ODP677-u & ODP677-f\\
+%\midrule
+%SM91 & Forced & $66.2$ & $94.7$ & $56.6$ & $64.6$ \\
+% & Unforced & $69.2$ & $42.3$ & $61.1$ & $41.9$ \\
+%T06 & Forced & $47.3$ & $70.0$ & $58.8$ & $ 68.3$  \\
+% & Unforced & $50.8$ & $33.3$ & $65.0$ & $49.5$  \\ 
+%PP12 & Forced & $19.5$ & $42.2$ & $51.1$ & $78.9$  \\
+%\bottomrule
+%\end{tabular}
+%\caption{WARNING: rounding errors here as I've taken Jake's Z value to two dp and logged it.
+%The log model evidences  for each model and dataset. The four datasets are i) SM91-u: data simulated from an unforced version of SM91 ii) SM91-f: data simulated from a forced version of SM91 iii) ODP677-u: real data from the ocean drilling programme dated by \cite{?} using a non-astro... iv) ...  
+%The difference between any two numbers in a given column gives the log Bayes factor for comparing the two models.
+%QUESTION: Would it be better to give the log BF compared to a particular model (the best? the worst?).
+%}
+%\label{Tab:Evidence}
+%\end{center}
+%\end{table}
+%
 
-\begin{table}[t]
-\begin{center}
-\begin{tabular}{ l l  c c  c c }
-\toprule
-\multicolumn{2}{c}{Model} & \multicolumn{4}{c}{Dataset} \\
-%\cline{3-6}
-& & SM91-u & SM91-f & ODP677-u & ODP677-f\\
-\midrule
-SM91 & Forced & $66.2$ & $94.7$ & $56.6$ & $64.6$ \\
- & Unforced & $69.2$ & $42.3$ & $61.1$ & $41.9$ \\
-T06 & Forced & $47.3$ & $70.0$ & $58.8$ & $ 68.3$  \\
- & Unforced & $50.8$ & $33.3$ & $65.0$ & $49.5$  \\ 
-PP12 & Forced & $19.5$ & $42.2$ & $51.1$ & $78.9$  \\
-\bottomrule
-\end{tabular}
-\caption{WARNING: rounding errors here as I've taken Jake's Z value to two dp and logged it.
-The log model evidences  for each model and dataset. The four datasets are i) SM91-u: data simulated from an unforced version of SM91 ii) SM91-f: data simulated from a forced version of SM91 iii) ODP677-u: real data from the ocean drilling programme dated by \cite{?} using a non-astro... iv) ...  
-The difference between any two numbers in a given column gives the log Bayes factor for comparing the two models.
-QUESTION: Would it be better to give the log BF compared to a particular model (the best? the worst?).
-}
-\label{Tab:Evidence}
-\end{center}
-\end{table}
 
+\clearpage
 
-
-\begin{figure}[t]
+\begin{figure}
 \centering
 \includegraphics[width=\textwidth]{ODP677Plot.pdf}
-\caption{Observed $\delta^{18}\mbox{O}$ from ODP677 \cite{Shackleton1990} corresponding to the past 780 kyr.
+\caption{
+JAKE - Please can you make the axis labels larger?
+Observed $\delta^{18}\mbox{O}$ from ODP677 \cite{Shackleton1990} corresponding to the past 780 kyr.
 This dataset has been dated without the use of orbital tuning  \cite{Huybers2007}.}
 \label{Fig:Data}
 \end{figure}
 
 
 
-\begin{figure}[p]
+\clearpage
+
+\begin{figure}
 \centering
 \includegraphics[width=\textwidth]{MSSSPE.pdf}\\\vspace{24pt}
-\caption{Marginal posterior distributions for the parameters of the forced SM91 model when fit to the  SM91-f dataset.
+\caption{
+JAKE - Please can you make the axis labels larger?
+Marginal posterior distributions for the parameters of the forced SM91 model when fit to the  SM91-f dataset.
 Vertical lines show the parameter values used to generate the data, and dashed lines represent the prior distribution. 
 }
 \label{Fig:PosteriorSS}
 \end{figure}
 
-\begin{figure}[p]
+
+\clearpage
+
+\begin{figure}
 \centering
 \includegraphics[width=\textwidth]{LR04677SM91.pdf}
-\caption{Marginal posterior distributions for the fully forced SM91 model on ODP677-f.
-Vertical lines show the parameter values used to generate the data, and dashed lines represent the prior distribution.}
-\label{Fig:Posterior2}
+\caption{
+JAKE - Please can you make the axis labels larger?
+Marginal posterior distributions for the fully forced SM91 model on ODP677-f. Dashed lines represent the prior distributions, and solid lines the posteriors. 
+The prior distributions used are given in Table ref{Tab:Priors}}
+\label{Fig:PosteriorODP}
 \end{figure}
 
 
 
-\begin{figure}[t]
+\clearpage
+
+\begin{figure}
 \centering
 \includegraphics[width=\textwidth]{ForcingComparison.pdf}
-\caption{Posterior density plot of the ratio of the orbital scaling terms for the SM91 model (black line), and T06 model (red line).}
+\caption{
+JAKE - Please can you make the axis labels larger?
+Posterior density plot of the ratio of the orbital scaling terms for the SM91 model (black line), and T06 model (red line).}
 \label{Fig:AFRatio}
 \end{figure}
 
+
+\clearpage
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.15]{CompactionSS01X01.pdf}\\
+\includegraphics[scale=0.15]{CompactionSS01X02.pdf}
+\caption{JAKE: These are the wrong figures - could you put in the correct figure. Add the truth on, and the data on $x_1$.   }
+\label{Fig:Trajectories}
+\end{figure}
 
 
 %
