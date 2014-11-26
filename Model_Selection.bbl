@@ -129,12 +129,12 @@ A.~Golightly and D.~Wilkinson, ``Bayesian inference for nonlinear multivariate
   diffusion models observed with error,'' {\em Computational Statististics \&
   Data Analysis}, vol.~52, pp.~1674--1693, 2008.
 
-\bibitem{Carson2014}
-J.~Carson, {\em Uncertainty Quantification in Palaeoclimate Reconstruction}.
-\newblock PhD thesis, University of Nottingham, 2014.
-
 \bibitem{Kass1995}
 R.~Kass and A.~Raftery, ``Bayes factors,'' {\em Journal of the American
   Statistical Association}, vol.~90, pp.~773--795, 1995.
+
+\bibitem{Carson2014}
+J.~Carson, {\em Uncertainty Quantification in Palaeoclimate Reconstruction}.
+\newblock PhD thesis, University of Nottingham, 2014.
 
 \end{thebibliography}

@@ -773,6 +773,18 @@ An estimate of the model evidence is provided by the product of these terms.
 
 
 
+
+\subsection{Simulation study}
+In order to gain confidence in the ability of our SMC$^2$ algorithm for both model selection and calibration, we begin with a simulation study.
+We simulate a single random trajectory from a given model and parameter setting and draw observations from the observation process. We then show that the posterior distributions recover the true value of the parameters (Figure \ref{Fig:PosteriorSS}), and that the Bayes factors correctly identify the true generative model (Table \ref{Tab:EvidenceSS}).
+
+We present results from analysing two simulated datasets: one in which data are generated from an unforced version of SM91, and one in which a forced version of SM91 is used. 
+We refer to these datasets as SM91-u and SM91-f respectively. The parameters used are given in Table \ref{Tab:EvidenceSS} and are comparable to those estimated from real data. Crucially, realistic values of the measurement error variance are used. 
+Observations are taken every $3$kyr over the past $780$kyr giving 261 observations in each dataset, which  is comparable to a  low resolution sediment core.
+The model evidence and posteriors are then calculated for  each of five models. We use a forced and unforced version of SM91 and T06, as well as the forced model PP12. We do not consider an unforced PP12 model as the deglatiation-glaciation transition depends only on the astronomical forcing, whereas SM91 and T06 both oscillate in the absence of any external forcing. The models contain between 10 and 16 parameters. We then test the ability of  our inference algorithms to 1) discriminate between the five models by  using estimates of the Bayes factors; 2) recover the parameters used to generate the data; and 3) reconstruct the underlying climate trajectories $x_{1:T}$.
+The priors used for each model are given in Table~\ref{Tab:Priors}.
+
+
 \begin{center}
 \begin{LARGE}
 TABLE \ref{Tab:Priors} ABOUT HERE
@@ -781,52 +793,50 @@ TABLE \ref{Tab:Priors} ABOUT HERE
 
 
 
+The estimated log Bayes factors (log BF) 
+ are given in Table~\ref{Tab:EvidenceSS}. 
+The  Bayes factor of two models is the ratio of the model evidences. However, the logarithm of the Bayes factor provides a more natural scale for interpretation, with the log BF calculated as the difference between two log evidences. Thus, it is only relative differences in the log evidences that matter, and this is what is reported in Table~\ref{Tab:Evidence}.
+A common interpretation of Bayes factors suggests that a log BF of 3 is strong evidence in favour  of one model over another, and that a log BF of 5 is a very strong indication that one model is superior to another \cite{Kass1995}. A score of $-5$ suggests very strong evidence in favour of the other model.
+
+
+For both simulated datasets, the data we prefer the correct model.
+When applied to SM91-f the correct model (the forced SM91 model) is overwhelmingly favoured. The log BF to the next most supported model (the forced T06 model) is estimated to be 24.7,  indicating decisive evidence in favour of the true model.
+It is interesting to note that if we remove the forced SM91 model from the analysis, we find decisive evidence in favour of the forced T06 model over any of the other unforced models (a log BF of at least 27.7), showing that the astronomical forcing has explanatory power even in the wrong model. This is not particularly surprising, because in both models the astronomical forcing acts as a synchronisation agent, controlling the timing of terminations, and has a strong effect on the likelihood. This is reassuring. It means that palaeoclimate scientists can implicitly rely upon this effect when arguing for the importance of the astronomical forcing, as it allows us to infer its importance even when using an incorrect simulator (which we surely are). \rdw{I've added this thought - may be a little strong.}
+
+
+When applied to SM91-u the log BF again correctly identifies the correct generative model, although the support for the unforced and forced SM91 models is now much closer (with a log BF of 2.9 in favour of the unforced model). In cases where the forcing does not add any explanatory power this is an expected result, as the unforced version of SM91 is nested within the forced version of SM91, and recovered by setting $\gamma_P = \gamma_C = \gamma_E = 0$. Because of this nesting, it is always going to be harder to detect whether we need the more general model (with small but non-zero values of the $\gamma$ parameters), or whether the simpler model will suffice (demonstrating the Occam's razor type property of Bayes factors).
+This effect is also noticeable when comparing the forced and unforced T06 models, with the unforced version being preferred with a log BF of 3.5. 
+
+Note that these experiments shows clearly that we can easily detect the correct parametric form of the simulator in each case. We need to be careful when using Monte Carlo estimates of the model evidences, as the Monte Carlo error can be considerable.
+Experimentation suggests that the model evidence estimates have a variance of approximately an order of magnitude, and hence the log Bayes factors should be viewed as having uncertainty of approximately plus or minus 6 on the log scale.
+We suggest that we can only be confident that there is strong evidence for one model over another if the estimated log BF is at least 10. Note that in most cases the conclusions in the simulation study would be unaffected by this noise. 
+The magnitude of the estimation error can be decreased by using more particles in the SMC$^2$ algorithm, but this can require very long computational runs (using $N=1000$.... JAKE CAN YOU SORT - takes ??? hours on a GPU.....).
+\mcr{although this discussion avoids the problem of the robustness vs the choice of priors, especially if the latter are vague}
+
+
 
 \begin{center}
 \begin{LARGE}
-TABLE \ref{Tab:Evidence} ABOUT HERE
+TABLE \ref{Tab:EvidenceSS} ABOUT HERE
 \end{LARGE}
 \end{center}
 
-\subsection{Simulation study}
-In order to gain confidence in the ability of our SMC$^2$ algorithm for both model selection and calibration, we begin with a simulation study.
-We simulate a single random trajectory from SM91 with a given parameter setting and draw observations from the observation process. We then show that the posterior distributions (Figure \ref{Fig:Posterior1}) recover the true value of the parameters, and that the Bayes factors correctly identify the true generative model (Table \ref{Tab:Evidence}).
-
-We present results from analysing two simulated datasets: one in which data and generated from an unforced version of SM91, and one in which a forced version of SM91 is used. 
-We refer to these datasets as SM91-u and SM91-f respectively. The parameters used are given in Figure \ref{Fig:Posterior1} and are comparable to those estimated from real data. Crucially, realistic values of the measurement error variance are used. 
-Observations are taken every $3kyr$ over the past $780kyr$ giving 261 observations in each dataset, which  is comparable to a  low resolution sediment core.
-The model evidence and posteriors are then calculated for  each of five models. We use a forced and unforced version of SM91 and T06, as well as PP12. We do not consider an unforced PP12 model as the deglatiation-glaciation transition depends only on the astronomical forcing, whereas SM91 and T06 both oscillate in the absence of any external forcing. The models contain between 10 and 16 parameters. We then test the ability of  our inference algorithms to 1) discriminate between the five models by  using estimates of the Bayes factors; 2) recover the parameters used to generate the data; and 3) reconstruct the underlying climate trajectories $x_{1:T}$.
-The priors used for each model are given in Table~\ref{Tab:Priors}.
 
 
-The estimated model evidences are given in Table~\ref{Tab:Evidence}.
-The  Bayes factor of two models is  the ratio of the model evidences. However, the logarithm of the Bayes factor (log BF) provides a more natural scale for interpretation, as ......
-The log BF is the difference between two log evidences. Thus, it is only relative differences in the log BF that matter, and this is what is reported in Table~\ref{Tab:Evidence}.
-A common interpretation of Bayes factors suggests that a log BF of 3 is strong evidence in favour  of one model over another, and that a log BF of 5 is a very strong indication that one model is superior to another \cite{Kass1995}.
-
-
-However, when using Monte Carlo estimates of the Model evidence it is important to consider Monte Carlo error.
-If the variance of the estimate is very high then the interpretation of the results will depend very strongly on the random numbers generated on a particular run.
-Repeated runs on SM91 suggests that the model evidence estimate can change by an order of magnitude, and hence Bayes factors can change by two orders of magnitude.
-In this case we can only be confident that one model is more strongly supported by the data for Bayes factors of 1000 or more.
-\mcr{although this discussion avoids the problem of the robustness vs the choice of priors, especially if the latter are vague}
-
-For both simulated datasets we prefer the correct model.
-When applied to SM91-u the Bayes factor between the unforced and forced SM91 model is relatively small.
-In cases where the forcing does not add any explanatory power this is an expected result.
-The unforced version of SM91 is nested within the forced version of SM91, and recovered by setting $\gamma_P = \gamma_C = \gamma_E = 0$.
-The smaller model evidence comes from the additional parameter space included in the forced model, which is penalised by Bayes factors.
-This is also noticible when comparing the forced and unforced T06 model.
-PP12 is the least supported model in this test.
-When applied to SM91-f the forced SM91 model is strongly favoured.
-It is interesting to note that the forced T06 model is strongly favoured over the unforced T06 model, showing that the astronomical forcing has explanatory power even in the wrong model. 
-\mcr{it may not be so surprising, because in both models the astronomical forcing acts as a synchronisation agent, controlling the timing of terminations, which has a strong effect on the likelihood.}
-
-
-The marginal parameter posteriors for the forced SM91 model applied to SM91-f are shown in Figure~\ref{Fig:Posterior}.
-We are able to recover the parameters used to generate the data reasonably well, with the true values lying in regions of high posterior probability.
+The marginal posterior distributions for the parameters for the forced SM91 model applied to the SM91-f dataset are shown in Figure~\ref{Fig:PosteriorSS}.
+We are able to recover the parameters used to generate the data, with the true values lying in regions of high posterior probability.
 The posteriors for $q$ and $\sigma_3$ do not deviate much from the prior, suggesting that a wide range of values explain the data equally well.
 Further examples are available in \cite{Carson2014}.
+
+
+\begin{center}
+\begin{LARGE}
+Figure \ref{Fig:PosteriorSS} about here.
+\end{LARGE}
+\end{center}
+
+
+
 
 \rdw{Can you add a plot showing the three SM91 trajectories, with the MC confidence interval, and the data from $y_1$. I think this would help illustrate, even if it is likely to end up in supplementary material.}
 
@@ -834,13 +844,6 @@ Further examples are available in \cite{Carson2014}.
 
 We repeat this experiment on data from ODP677 with a depth-derived age model \cite{Huybers2007} (ODP677-u) and an orbitally-tuned age model \cite{Lisiecki2005} (ODP677-f).
 The priors are kept the same as from the simulation study and the model evidence estimates for each model are given in Table~\ref{Tab:Evidence}.
-
-\begin{center}
-\begin{LARGE}
-Figure \ref{Fig:Posterior1} about here.
-\end{LARGE}
-\end{center}
-
 
 \begin{center}
 \begin{LARGE}
@@ -907,6 +910,20 @@ In particular Richard has some comments on using summary statistics.
 \mcr{I believe one outstanding problem when we arrive to this conclusio is that the palaeclimatic conclusions all sound a bit naive. Remember that the SM90 model is a bit ancient, and that the T06 model rests an a controversial mechanism, and, again, in both cases, we are more discriminating the dynamics than the actual mechanisms that are featured by these models. With a benthic foram core, it seems indeed a bit overstretch to claim discerning the difference between a g/i mechanism resting on biogeochemical instability, and one resting on a sea-ice switch mechanism. We have to be careful not to be interpreted in this way. One necessary (and not sufficient) condition for appreciating the role of biogeochemistry or sea-ice (if we want to speak of these two models in particular) is to actually have data about these physical entities. 
 On the other hand, looking at the amount of code, notes written etc. that Jake and other of us have delivered in the last four years, we must have the material to say a bit more about our experience in model selection. E.g.: how many particles do we need? What is the rate of convergence? What is the improvement provided by the Golighty-Wilkinson algorithm : was it necessary to use this proposal? How did Jake chose the MH proposal when resampling particles? etc. All these elements are essential because if we admit that this was a ``simple" problem using after all oversimplified models, the merit of our experience is that it allows us to envision how this work can be extended to more data (mean : CO2, ice volume, methane, \ldots) and more physically explicit models. A few comments are inlined, but really we need to give this more thought. }
 \label{Sec:Conclusion}
+
+ This contrasts strongly with the viewpoint commonly held by those in the community. In \cite{Roe1999}, this was expressed as follows: 
+
+\begin{quote}
+Most simple models of the [...] glacial cycles have at least four degrees of freedom [parameters], and some have as many as twelve. Unsurprisingly [...this is] insufficient to distinguish between the skill of the various models
+\end{quote}
+
+This viewpoint was true a few years ago, when parameter inference in these models was all but impossible, never mind the estimation of Bayes factors. However, recently developments in Monte Carlo methodology, and the massive increase in computing power (including the utilisation of GPUs), means that the calculations need and now possible. Here, using only 261 observations, we are able to learn up to 16 parameters, and state trajectories  containing $261\times 3$ values, for each of 5 models, and then calculate the marginal evidence to be able to discriminate between the models. 
+
+\rdw{This discussion could perhaps be split between the intro and the conclusion. We don't want to be too critical of Roe and Allen, but we do want to stress why this work is cool!}
+
+
+
+
 
 \noindent In this paper we have presented a principled inference approach for assimilating palaeclimate observations in to phenomenological models of the cliamte.
 We have shown how Bayesian model selection can be used to study a variety of problems in paleaoclimatology. 
@@ -980,23 +997,53 @@ Sections indicate parameters used to scale the astronomical forcing (absent in u
 %\cline{3-6}
 & & SM91-u & SM91-f\\
 \midrule
-SM91 & Forced & $46.7$ & $31.4$\\
- & Unforced & $49.6$ & $9$ \\
-T06 & Forced & $27.8$ & $36.7$   \\
- & Unforced & $31.3$ & $0$ \\ 
-PP12 & Forced & $0$ & $9$ \\
+SM91 & Forced & $-2.9$ & $0$\\
+ & Unforced & $0$ & $-52.4$ \\
+T06 & Forced & $-21.8$ & $-24.7$   \\
+ & Unforced & $-18.3$ & $-61.4$ \\ 
+PP12 & Forced & $-49.6$ & $-52.5$ \\
 \bottomrule
 \end{tabular}
-\caption{WARNING: rounding errors here as I've taken Jake's Z value to two dp and logged it.
-The log model evidences  for each model and dataset. Only relative differences matter, and so we have subtracted the minimum value found from each column so that the worst supported model is given a value of 0.
-The four datasets are i) SM91-u: data simulated from an unforced version of SM91 ii) SM91-f: data simulated from a forced version of SM91 iii) ODP677-u: real data from the ocean drilling programme dated by \cite{?} using a non-astro... iv) ...  
-The difference between any two numbers in a given column gives the log Bayes factor for comparing the two models.
-QUESTION: Would it be better to give the log BF compared to a particular model (the best? the worst?).
+\caption{Log Bayes factors for comparing five different models on the two simulated datasets. In each column, the log BF is with respect to the true generative model, so that positive values indicate support for that model over the true model, and negative values indicate support for the true model. SM91-u is data generated from an unforced version of SM91, whereas SM91-f is generated from an astronomically forced version of SM91.
+Values of the log evidence can be reconstructed from noting that $\log Z=69.2$ for the unforced version of SM91 on the SM91-u dataset, and that $\log Z = 94.7$ for the forced SM91 model on the SM91-f dataset. The parameter values used to generate SM91-f are: $p=0.8$, $q=1.6$, $r=0.6$, $s=1.4$, $v=0.3$, $\sigma_1=0.2$, $\sigma_2=0.3$, $\sigma_3=0.3$, $\gamma_P=0.3$, $\gamma_C=0.1$, $\gamma_E=0.4$, $D=3.8$, $S=0.8$, $\sigma_y=0.1$.
+For SM91-u we set $\gamma_P = \gamma_C = \gamma_E = 0$.
+QUESTION: I've played around with various ways of presenting this information, including the original evidence, the log evidence, and the log BF compared to the worst model. I think this is the clearest - do you agree?
+WARNING: rounding errors here as I've taken Jake's Z value to two dp and logged it.
 }
 \label{Tab:EvidenceSS}
 \end{center}
 \end{table}
 
+
+
+
+%
+%\begin{table}[t]
+%\begin{center}
+%\begin{tabular}{ l l  c c }
+%\toprule
+%\multicolumn{2}{c}{Model} & \multicolumn{2}{c}{Dataset} \\
+%%\cline{3-6}
+%& & SM91-u & SM91-f\\
+%\midrule
+%SM91 & Forced & $46.7$ & $61.4$\\
+% & Unforced & $49.6$ & $9.0$ \\
+%T06 & Forced & $27.8$ & $36.7$   \\
+% & Unforced & $31.3$ & $0$ \\ 
+%PP12 & Forced & $0$ & $8.9$ \\
+%\bottomrule
+%\end{tabular}
+%\caption{WARNING: rounding errors here as I've taken Jake's Z value to two dp and logged it.
+%The log model evidences  for each model and dataset. Only relative differences matter, and so we have subtracted the minimum value found from each column so that the worst supported model is given a value of 0.
+%The four datasets are i) SM91-u: data simulated from an unforced version of SM91 ii) SM91-f: data simulated from a forced version of SM91 iii) ODP677-u: real data from the ocean drilling programme dated by \cite{?} using a non-astro... iv) ...  
+%The difference between any two numbers in a given column gives the log Bayes factor for comparing the two models.
+%QUESTION: Would it be better to give the log BF compared to a particular model (the best? the worst?).
+%ADD minimum value so that can reconstruct if wanted.
+%}
+%\label{Tab:EvidenceSS}
+%\end{center}
+%\end{table}
+%
 
 \begin{table}[t]
 \begin{center}
@@ -1037,11 +1084,10 @@ This dataset has been dated without the use of orbital tuning  \cite{Huybers2007
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth]{MSSSPE.pdf}\\\vspace{24pt}
-\caption{Marginal posterior distributions for the fully forced SM91 model on SM91-f.
-Vertical lines show the parameter values used to generate the data, and dashed lines represent the prior distribution. The parameter values used to generate the data are: $p=0.8$, $q=1.6$, $r=0.6$, $s=1.4$, $v=0.3$, $\sigma_1=0.2$, $\sigma_2=0.3$, $\sigma_3=0.3$, $\gamma_P=0.3$, $\gamma_C=0.1$, $\gamma_E=0.4$, $D=3.8$, $S=0.8$, $\sigma_y=0.1$.
-For the unforced data we set $\gamma_P = \gamma_C = \gamma_E = 0$.
+\caption{Marginal posterior distributions for the parameters of the forced SM91 model when fit to the  SM91-f dataset.
+Vertical lines show the parameter values used to generate the data, and dashed lines represent the prior distribution. 
 }
-\label{Fig:Posterior1}
+\label{Fig:PosteriorSS}
 \end{figure}
 
 \begin{figure}[p]
