@@ -30,12 +30,6 @@ L.~Lisiecki, ``Links between eccentricity forcing and the 100,000-year glacial
 P.~Huybers, ``Combined obliquity and precession pacing of late {P}leistocene
   deglaciations,'' {\em Nature}, vol.~480, pp.~229--232, 2011.
 
-\bibitem{Cane2006}
-M.~Cane, P.~Braconnot, A.~Clement, H.~Gildor, S.~Joussaume, K.~M., M.~Khodri,
-  D.~Paillard, S.~Tett, and E.~Zorita, ``Origin and consequences of cyclic
-  ice-rafting in the northeast atlantic ocean during the past 130,000 years,''
-  {\em Quaternary research}, vol.~29, pp.~142--152, 1988.
-
 \bibitem{Crucifix2012}
 M.~Crucifix, ``Oscillators and relaxation phenomena in {P}leistocene climate
   theory,'' {\em Transactions of the {P}hilosophical {T}ransactions of the
@@ -45,20 +39,16 @@ M.~Crucifix, ``Oscillators and relaxation phenomena in {P}leistocene climate
 M.~Crucifix, ``Why could ice ages be unpredictable,'' 2013.
 \newblock 1302.1492, arXiv.org.
 
+\bibitem{Cane2006}
+M.~Cane, P.~Braconnot, A.~Clement, H.~Gildor, S.~Joussaume, K.~M., M.~Khodri,
+  D.~Paillard, S.~Tett, and E.~Zorita, ``Origin and consequences of cyclic
+  ice-rafting in the northeast atlantic ocean during the past 130,000 years,''
+  {\em Quaternary research}, vol.~29, pp.~142--152, 1988.
+
 \bibitem{Roe1999}
 G.~Roe and M.~Allen, ``A comparison of competing explanations for the
   100,000-yr ice age cycle,'' {\em Geophysical {R}esearch {L}etters}, vol.~26,
   pp.~2259--2262, 1999.
-
-\bibitem{Andrieu2010}
-C.~Andrieu, A.~Doucet, and R.~Holenstein, ``Particle {M}arkov chain {M}onte
-  {C}arlo methods,'' {\em Journal of the Royal Statistical Society B}, vol.~72,
-  pp.~269--342, 2010.
-
-\bibitem{Chopin2012}
-N.~Chopin, P.~Jacob, and O.~Papaspiliopoulos, ``{SMC}$^2$: an efficient
-  algorithm for sequential analysis of state-space models,'' 2012.
-\newblock 1101.1528, arXiv.org.
 
 \bibitem{Shackleton1990}
 N.~Shackleton, A.~Berger, and W.~Peltier, ``An alternative astronomical
@@ -109,6 +99,16 @@ F.~Parrenin and D.~Paillard, ``Terminations {VI} and {VIII} ($\sim$530 and
   $\sim$720 kyr {BP}) tell us the importance of obliquity and precession in the
   triggering of deglaciations,'' {\em Climate of the {P}ast}, vol.~8,
   pp.~2031--2037, 2012.
+
+\bibitem{Andrieu2010}
+C.~Andrieu, A.~Doucet, and R.~Holenstein, ``Particle {M}arkov chain {M}onte
+  {C}arlo methods,'' {\em Journal of the Royal Statistical Society B}, vol.~72,
+  pp.~269--342, 2010.
+
+\bibitem{Chopin2012}
+N.~Chopin, P.~Jacob, and O.~Papaspiliopoulos, ``{SMC}$^2$: an efficient
+  algorithm for sequential analysis of state-space models,'' 2012.
+\newblock 1101.1528, arXiv.org.
 
 \bibitem{DelMoral2006}
 P.~Del~Moral, A.~Doucet, and A.~Jasra, ``Sequential {Monte} {C}arlo samplers,''

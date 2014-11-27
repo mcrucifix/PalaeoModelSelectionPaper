@@ -17,28 +17,36 @@
 
 
 
-\title{What drives the glacial-interglacial cycle? A Bayesian approach to a long-standing problem}
+\title{Model selection is possible with palaeoclimate data and models of the glacial-interglacial cycle\\
+What drives the glacial-interglacial cycle? A Bayesian approach to a long-standing problem}
 \author{Carson, Crucifix, Preston, Wilkinson \\ Order can/may change}
 
 \begin{document}
 \maketitle 
 \mcr{We'll probably have to think about the title but that's not urgent}
-\mcr{Lines have been split following sentences for easier diff tracking}
+
+
+\begin{abstract}
+VERY ROUGH - IGNORE FOR NOW.
+
+The prevailing viewpoint in palaeoclimate science, is that a single palaeoclimate record   contains insufficient information to  discriminate between  competing  explanatory models.
+Our aim here is to show  that this is not the case. Recent developments in Monte Carlo methodology, and advances in computer power, mean that for a wide class of phenomenological models, we are now able to perform filtering, calibration, and Bayesian model selection.
+Using the SMC$^2$ algorithm of Chopin and ? 2014, combined with Brownian bridge proposals for the state trajectories, we show that even with relatively short time series, it is possible to estimate Bayes factors to sufficient accuracy to be able to discriminate between competing models. 
+This suggests a new possibility for those working in climate science - careful empirical comparison of competing hyptotheses is now possible....
+Our results highlight the problem of using pre-dated palaeoclimate records. By analysing a dataset that has been dated in two different ways, we are led to completely contradictory conclusions. Thus indicating the current practice of first dating a core, and then analysing it to draw further scientific conclusions in an independent analysis is,.... and these tasks...
+
+
+\end{abstract}
+
+
+
 \section{Introduction}
-% Explain the scientific problem in simple terms and define the statistical challenges.
-% To do: Define eccentricity, obliquity, and precession.
 
-% WHAT WE@VE FOUND is the data is 'theory-laden'!
+\rdw{This is not a modelling or a science paper. It is a proof of concept: we can do model selection. Give us your models and your data, and we can say which is best supported.}
 
 
-% The history of the Earth's climate can be inferred by studying the oxygen isotope
-% composition of microbes and water from sedminent and ice core samples \cite{Lisiecki2005, Huybers2007}.
-% Values of $\delta^{18}O$, which is a function of the ratio between isotopes $^{18}O$ 
-% and $^{16}O$, in microbes reflects the temperature and $\delta^{18}O$ since the level
-% of $\delta^{18}O$ in microbes
-% 
+\rdw{Michel - the intro is now ready for you to look at - no need to edit the language at this stage, just the message.}
 
-%\doublespacing
 
 The history of the Earth's climate can be inferred by studying the oxygen isotope
 composition of microbes and water from sediment and ice core samples \cite{Lisiecki2005, Huybers2007}.
@@ -53,20 +61,21 @@ core samples broadly indicate a colder climate with greater ice volume.
 Such data suggest that the Earth entered into its current ice-age (characterised by
 persistent ice caps at the poles) approximately 3 million years (Myr) ago [ref?].  Since
 then the climate has fluctuated between cold periods, in which glaciers expand, and warm
-periods in which the glaciers retreat.  This is known as glacial--interglacial cycles.  In
+periods in which the glaciers retreat.  These are known as glacial--interglacial cycles.  In
 the early Pleistocene---a period from around 2.5 Mya ago until 11 thousand years (kya)
 ago---the average period of the glacial--interglacial cycle was around 40 kyr.  However,
 around 1 Mya ago the average period became around 100 kyr, a change in behaviour known as
 the mid-Pleistocene transition. There is much interest in the mechanisms underlying the
 100 kyr glacial--interglacial cycles.
-% The aim of this paper is to demonstrate a Bayesian approach that can be used over a
-% broad range of model selection problems in palaeoclimatology.  We focus on determining
-% the influence of the astronomical forcing, and distinguishing between competing
-% phenomenological (consistent with, but not derived from the physical theory of a system)
-% models of the glacial-interglacial cycle.
-%
 
-Almost certainly an important driver of the cycles is the variability in incoming solar
+NEW The aim of this paper is to demonstrate a Bayesian approach that can be used over a
+broad range of model selection problems in palaeoclimatology.  We focus on determining
+the influence of the astronomical forcing, and distinguishing between competing
+phenomenological (consistent with, but not derived from the physical theory of a system)
+models of the glacial-interglacial cycle.
+
+
+An important driver of the cycles is the variability in incoming solar
 radiation, termed ``insolation''.  Insolation is variable on account of the geometry of the
 Earth's orbit; for a historical discussion see \cite{Berger2004}.  The effect of the orbit
 on insolation, known as ``astronomical forcing'', has been studied extensively, following
@@ -74,7 +83,7 @@ from work of Milankovitch [ref] who decomposed the orbit into three orbital char
 namely eccentricity, obliquity, and precession \cite{Hays1976}.  These characteristics,
 which we explain in more detail in \S, are each cyclical and have different periods and
 amplitudes in their contribution to insolation.  The relative importance of the
-characteristics to the glacial--interglacial cycles is topic of ongoing interest
+characteristics to the glacial--interglacial cycles is a topic of ongoing interest
 \cite{Huybers2005,Lisiecki2010,Huybers2011} [any other refs?  Papers that use Rayleigh's R
 stat? see line -12 on p229 of Huybers 2011].  Notably, the 100kyr period of
 glacial--interglacial cycles corresponds closely with the period of the eccentricity cycle,
@@ -139,7 +148,7 @@ with different studies finding different orbital characteristics being significa
 (obliquity in \cite{Huybers2005}, eccentricity in \cite{Lisiecki2010}, and a combination of
 precession and obliquity in \cite{Huybers2011}).
 
-\spp{Need a para here about the Phil Trans paper comparing models using information
+\spp{JAKE: We need a para here about the Phil Trans paper comparing models using information
 criteria}
 
 This paper is structures as follows.  In Section \ref{Sec:Data} we describe in more detail the
@@ -170,32 +179,23 @@ overstretched}
 % positive results for 
 
 
-\vspace{1cm}
-
-\spp{I think the rest of this material before \S2 can either be cut, or else belongs later in the paper}
-
 \color{gray} 
 
 \vspace{1cm}
 \hrule
 \vspace{1cm}
-Alternatively, many low-order phenomenological models have been proposed to study the
-dynamics of glacial-interglacial cycles
-\cite{paillard01rge,Cane2006,Crucifix2012,Crucifix2013}.  The majority of these models
-fit within a state space model (SSM) framework; dynamical systems in which there are
-observable and unobservable states.  The observable states are typically measured only
-at discrete time intervals, and with measurement error.  For the phenomenological models
-of glacial-interglacial cycles the unobservable states can either be physically
-undefined or may represent some real-world quantity.  Many models follow the viewpoint
+
+Many models follow the viewpoint
 that the astronomical forcing acts as a pacemaker to the climate by synchronising a
 self-oscillating or excitable system with the astronomical forcing
 \cite{Crucifix2012,Crucifix2013}.  \mcr{I wrote this, but I would soften the statement:
 see for example the interesting, unfortunately rejected, paper by Daruka and Ditlevsen
 (climate of the past discussion) were they use a Duffing oscillator. The Duffing
 oscillation does not have a limit cycle, even not an internal period, and yet does the
-job} A common viewpoint is that the  information contained an a single record do not
+job} A common viewpoint is that the  information contained in a single record do not
 contain enough information to distinguish between the numerous proposed models
-\cite{Cane2006,Roe1999}.  \mcr{This is a tricky point: there is a distinction between
+\cite{Cane2006,Roe1999}.  
+\mcr{This is a tricky point: there is a distinction between
 identifying the dynamics (is there a limit cycle; is the system unstable etc. and
 identifying physical principle, e.g.: does the formation of antarctic bottom water off
 the Antarctic shelve play a critical role in the dynamics? In the latter, complementary
@@ -217,30 +217,27 @@ In particular, it may be used in cases where the models are not nested, allowing
 Finally, the use of SSMs allows us to assimilate paleaoclimate data in a principled framework, without making it necessary to use summary statistics such as termination times.
 \mcr{though we may agree that using summary statistics is a convenient approach for implicitly accounting for model discrepancy}
 
-Formally, we have a set of models $\{\mathcal{M}\}_{m=1,...,M}$, where each model $\mathcal{M}_m$ has parameter $\theta_m$.
-A standard Bayesian model selection approach involves first calculating the posterior distribution of the parameters given the set of data $Y_{1:T}$ for each model:
-\begin{equation} \label{Eqn:Bayes}
-\pi(\theta_m \vert Y_{1:T}, \mathcal{M}_m) = \frac{\pi(\theta_m \vert \mathcal{M}_m) \pi(Y_{1:T} \vert \theta_m, \mathcal{M}_m)}{\pi(Y_{1:T} \vert \mathcal{M}_m)},
-\end{equation}
-\noindent where $\pi(\theta_m \vert \mathcal{M}_m)$ is the prior distribution of the parameters given the model.
-For most of the proposed models the likelihood term $\pi(Y_{1:T} \vert \theta_m, \mathcal{M}_m)$ is intractable (meaning it is not available in closed form or it is too computationally expensive to estimate), and so we can not calculate an analytical solution to Equation~\ref{Eqn:Bayes}.
-This also prevents the use of many traditional methods for Bayesian inference, such as Markov chain Monte Carlo (MCMC).
-However, there have recently been numerous methodological advancements for inference in models in which the likelihood term is intractable, particularly for state-space models \cite{Andrieu2010,Chopin2012}.
-The normalising constant $\pi(Y_{1:T} \vert \mathcal{M}_m)$ is termed the model evidence, and is used in evaluating the posterior model probabilities $\pi(\mathcal{M}_m \vert Y_{1:T}) \propto \pi(\mathcal{M}_m) \pi(Y_{1:T} \vert \mathcal{M}_m)$, where $\pi(\mathcal{M}_m)$ is the prior probability of model $\mathcal{M}_m$.
-Thus, a Bayesian model selection approach calibrates the parameters for each model, and indicates which models have the greatest explanatory power.
-
 \color{black}
 \section{Data and models}
 \label{Sec:Data}
-%Describe the dataset we are using
-%More on this in the science paper, where we may need to explain why we are using a single record as opposed to a stack etc.
-%To do: define some terms
+
+ Attempts to understand the dynamical behaviour of the palaeoclimate typically involve four components. These are i) data consisting of palaeoclimate records; ii) models of the climate; iii) drivers/forcings of the climate (such as CO$_2$ emissions, or more pertinently for palaeoclimate, the solar forcing), and iv) a statistical model relating the three previous components. The final component necessary is then the statistical methodology necessary to combine these components to find answers that combine them all in an appropriate way.
+
+The aim of this paper is to demonstrate that the kind of questions we imagine palaeoclimate scientists may wish to ask, can now be answered in a way statisticians may wish to answer them. That is to say, given some data and a selection of models, we are able to fit these models, and assess which model is best supported by the data. Scientific aspects of the approach can (and we hope will) be improved upon: different datasets, richer models, and more accurate statistical modelling may all follow. Here, we show that the methodology and computer power is now of sufficiently advanced state that the Bayesian inference problems can be answered.
+
+
+
+\rdw{Michel - I'm trying (and failing) to get towards the holy trinity diagram you have been using, with the triangle of approaches, with the aim to unify some of them using stats. I'm sure you can phrase this better.}
+In the next section we present methodology for 
+
+
+
+\subsection{Data}
 
 The data we will use are based on measurements of $\delta^{18}O$ at different depths in sediment
 and ice cores sampled from various geographical locations [more details?].  In
 climatology, a set of such measurements is known as a ``record'' [?], and an average
-over multiple records (which removes spacial variation to give a , and improves
-signal-to-noise ratio) is known as a ``stack''.  The $\delta^{18}O$ in deeper parts of a
+over multiple records  is known as a ``stack''.  The $\delta^{18}O$ in deeper parts of a
 core corresponds to climatic conditions further back in time.  However, beyond monotonicity
 there is no simple relationship between core depth and age.  This is because the
 accumulation of sediment [what to say about ice?] results from a combination of 
@@ -254,11 +251,7 @@ whose dates are accurately known.  Also common is to align features of records t
 astronomical forcing [refs], a process known as astronomical tuning.  Investigating age 
 models is beyond the scope of this paper, so we take as a starting point a stack for which
 an age model has already been applied; this gives a data set which is a time series 
-$\left\{ t, Y_t\right\}$ in which $Y_t$ denotes the level of $\delta^{18})$ at time $t$.  
-However, care is need to select an appropriate stack: since our goal is to investigate the 
-effect of astronomical forcing on
-glacial--interglacial cycles, it is clearly important that the stack we use has
-not been astronomically tuned.
+$\left\{ t, Y_t\right\}$ in which $Y_t$ denotes the level of $\delta^{18}O$ at time $t$.  
 
 \begin{center}
 \begin{LARGE}
@@ -267,7 +260,7 @@ Figure \ref{Fig:Data} about here.
 \end{center}
 
 
-In this article we consider a stack known as ODP677 which has not been
+In this article we consider a stack (or is it a core) known as ODP677 which has not been
 astronomically tuned \cite{Huybers2007} [comment on the tuning used?].  
 This stack is shown in Figure
 \ref{Fig:Data} [comments?].  [I'm stuggling a bit with terminology here: is it okay to
@@ -277,10 +270,8 @@ astronomically
 tuned \cite{Lisiecki2005}, to highlight how conclusions of inference can be affected by
 incorrectly ``double counting'' the influence of astonomically forcing.
 
-In the remainder of this section we specify the ingredients needed for our model of these 
-data, namely: a model for astronomical forcing, three possible models for climate
-dynamics, and an observation model that relates the variables in the dynamical models to the 
-$\delta^{18}\mbox{O}$ time series. 
+\rdw{I'm not sure this is correct}
+
 
 
 \spp{Anything alse needed from below?}
@@ -558,10 +549,27 @@ As such we relate an observation at time $t$ to the observable component of the 
 \color{black}
 \section{Methodology}
 \label{Sec:Meth}
-%Describe our solution using SMC^2
-%To do: Cut out some of the tutorial stuff
+
+\rdw{Ignore this section for now. I'll edit this next}
+
+MOVED
+
+Formally, we have a set of models $\{\mathcal{M}\}_{m=1,...,M}$, where each model $\mathcal{M}_m$ has parameter $\theta_m$.
+A standard Bayesian model selection approach involves first calculating the posterior distribution of the parameters given the set of data $Y_{1:T}$ for each model:
+\begin{equation} \label{Eqn:Bayes}
+\pi(\theta_m \vert Y_{1:T}, \mathcal{M}_m) = \frac{\pi(\theta_m \vert \mathcal{M}_m) \pi(Y_{1:T} \vert \theta_m, \mathcal{M}_m)}{\pi(Y_{1:T} \vert \mathcal{M}_m)},
+\end{equation}
+\noindent where $\pi(\theta_m \vert \mathcal{M}_m)$ is the prior distribution of the parameters given the model.
+For most of the proposed models the likelihood term $\pi(Y_{1:T} \vert \theta_m, \mathcal{M}_m)$ is intractable (meaning it is not available in closed form or it is too computationally expensive to estimate), and so we can not calculate an analytical solution to Equation~\ref{Eqn:Bayes}.
+This also prevents the use of many traditional methods for Bayesian inference, such as Markov chain Monte Carlo (MCMC).
+However, there have recently been numerous methodological advancements for inference in models in which the likelihood term is intractable, particularly for state-space models \cite{Andrieu2010,Chopin2012}.
+The normalising constant $\pi(Y_{1:T} \vert \mathcal{M}_m)$ is termed the model evidence, and is used in evaluating the posterior model probabilities $\pi(\mathcal{M}_m \vert Y_{1:T}) \propto \pi(\mathcal{M}_m) \pi(Y_{1:T} \vert \mathcal{M}_m)$, where $\pi(\mathcal{M}_m)$ is the prior probability of model $\mathcal{M}_m$.
+Thus, a Bayesian model selection approach calibrates the parameters for each model, and indicates which models have the greatest explanatory power.
+
+END OF MOVED MATERIAL
 
 \subsection{Inference in SSMs}
+
 
 We now return to the problem of selecting between multiple models $\{\mathcal{M}_m\}_{m=1,...,M}$, where each model has parameter space $\theta_m$.
 In the context of SSMs a Bayesian inference approach involves estimating the posterior distribution
@@ -910,13 +918,18 @@ In particular Richard has some comments on using summary statistics.
 \item Information criterion approaches?
 \end{itemize}
 
+What's missing?
+UKF
+ABC comparison
+Details of statistical improvements - SMC$^2$ for model selection
+G and W updates.
+
+
 \section{Conclusions}
 \label{Sec:Conclusion}
 
-
-When we began this work, it was with the hope of contributing towards answering the scientific question of determining the degree of influence of the astronomical forcing on  the glacial-interglacial cycle. That is not what we have achieved here. Instead, we have two key conclusions.
-
-The first is that Monte Carlo technology and computer power are now both sufficiently advanced, that with work, it is possible to fully solve the Bayesian model selection problem for a wide class of phenomenological models of the glacial-interglacial cycle. It came as a surprise to us, and we believe it will to others, that even relatively short time-series of observations contain enough information to discriminate between many of the models. A priori, we had expected to find that there was simply insufficient information in the data, given the level of noise, to solve simultaneously the filtering and the model calibration problems, and then still distinguish between the models. That we are able to do this, contrasts strongly with the common viewpoint 
+We have two key conclusions.
+The first is that Monte Carlo technology and computer power are now both sufficiently advanced, that with work, it is possible to fully solve the Bayesian model selection problem for a wide class of phenomenological models of the glacial-interglacial cycle. It came as a surprise to us, that even relatively short time-series of observations contain sufficient information to discriminate between many of the models. A priori, we had expected to find that there was simply insufficient information in the data, given the level of noise, to solve simultaneously the filtering and the model calibration problems, and then still distinguish between the models. That we are able to do this, contrasts strongly with the  viewpoint 
 set out in \cite{Roe1999}:
 
 
@@ -925,17 +938,22 @@ set out in \cite{Roe1999}:
 Most simple models of the [...] glacial cycles have at least four degrees of freedom [parameters], and some have as many as twelve. Unsurprisingly [...this is] insufficient to distinguish between the skill of the various models
 \end{quote}
 
-In 1999 this viewpoint was true. We lacked both the computer power and the algorithmic knowledge to do Bayesian inference of the  parameters, never mind  estimating the Bayes factors. However, recently developments in Monte Carlo methodology, and the massive increase in computing power (including the utilisation of GPUs), means that the calculations need and now possible. Here, using only 261 observations, we are able to learn up to 16 parameters, and state trajectories  containing $261\times 3$ values, for each of 5 models, and then calculate the marginal evidence to be able to discriminate between the models. 
+\noindent In 1999 this viewpoint may have been true. We lacked both the computer power and the algorithmic knowledge to do Bayesian inference for the  parameters, never mind  estimating the Bayes factors. However, recently developments in Monte Carlo methodology, and the massive increase in computing power (including the utilisation of GPUs), means that the calculations are now possible. Using only 261 observations, we are able to learn up to 16 parameters,  state trajectories  containing $261\times 3$ values, and  calculate the marginal evidence. Moreover, these evidences are sufficiently different (and able to be estimated with sufficient accuracy) that we can confidently discriminate the ability of the models to explain the data.
 
-\rdw{This discussion could perhaps be split between the intro and the conclusion. We don't want to be too critical of Roe and Allen, but we do want to stress why this work is cool!}
+\rdw{We don't want to be too critical of Roe and Allen, but we do want to stress why this work is cool!}
 
-Our second conclusion concerns the need to avoid theory laden data. The results from analysing data from ODP677 show that the age model used to date the core become critical when the data are used to make scientific judgements. One age model gives overwhelming evidence that the astronomical forcing is vital for explaining the data, while another age model suggests the opposite. This suggests that analysing the data in stages, cutting feedbacks between uncertainties, is not feasible. Instead of first dating the core, and then using those dates (with or without uncertainties), we instead need to jointly estimate the age model at the same time as testing further hypotheses, accounting for all the joint uncertainties. While this observation is not new, we believe it is the first time the effect of the age model has been so clearly demonstrate on subsequent analyses.
+Our second conclusion concerns the need to avoid theory laden data. The results from analysing the  ODP677 data, show that the age model used to date the core become critical when the data are subsequently used to make scientific judgements. One age model gives overwhelming evidence that the astronomical forcing is vital for explaining the data, while another age model suggests the opposite. This suggests that analysing the data in stages, cutting feedbacks between uncertainties, is not sensible. While this observation is not new, we believe it is the first time the effect of the age model on subsequent analyses has been so clearly demonstrated.
+Instead of first dating the core, and then using those dates (with or without uncertainties), we instead need to jointly estimate the age model at the same time as testing further hypotheses, accounting for all the joint uncertainties. 
 
 
-\mcr{I believe one outstanding problem when we arrive to this conclusio is that the palaeclimatic conclusions all sound a bit naive. Remember that the SM90 model is a bit ancient, and that the T06 model rests an a controversial mechanism, and, again, in both cases, we are more discriminating the dynamics than the actual mechanisms that are featured by these models. With a benthic foram core, it seems indeed a bit overstretch to claim discerning the difference between a g/i mechanism resting on biogeochemical instability, and one resting on a sea-ice switch mechanism. We have to be careful not to be interpreted in this way. One necessary (and not sufficient) condition for appreciating the role of biogeochemistry or sea-ice (if we want to speak of these two models in particular) is to actually have data about these physical entities. 
+\mcr{I believe one outstanding problem when we arrive to this conclusio is that the palaeclimatic conclusions all sound a bit naive. Remember that the SM90 model is a bit ancient, and that the T06 model rests an a controversial mechanism, and, again, in both cases, we are more discriminating the dynamics than the actual mechanisms that are featured by these models. With a benthic foram core, it seems indeed a bit overstretch to claim discerning the difference between a g/i mechanism resting on biogeochemical instability, and one resting on a sea-ice switch mechanism. We have to be careful not to be interpreted in this way. One necessary (and not sufficient) condition for appreciating the role of biogeochemistry or sea-ice (if we want to speak of these two models in particular) is to actually have data about these physical entities. }
+
+\rdw{Michel, does the new results section and emphasis answer these concerns}
+
+\mcr{
 On the other hand, looking at the amount of code, notes written etc. that Jake and other of us have delivered in the last four years, we must have the material to say a bit more about our experience in model selection. E.g.: how many particles do we need? What is the rate of convergence? What is the improvement provided by the Golighty-Wilkinson algorithm : was it necessary to use this proposal? How did Jake chose the MH proposal when resampling particles? etc. All these elements are essential because if we admit that this was a ``simple" problem using after all oversimplified models, the merit of our experience is that it allows us to envision how this work can be extended to more data (mean : CO2, ice volume, methane, \ldots) and more physically explicit models. A few comments are inlined, but really we need to give this more thought. }
 
-
+\rdw{I'll think about what we should add to Section 4}
 
 %
 %We have presented a principled inference approach for assimilating palaeclimate observations in to phenomenological models of the cliamte.
@@ -948,8 +966,7 @@ On the other hand, looking at the amount of code, notes written etc. that Jake a
 %We have also shown how the same approach can calibrate phenomenogical models of the climate, which is a difficult problem when stochastic perturbations are included.
 
 The experiments included in this paper can be extended in several ways.
-Firstly, we consider only a handful of models, and all with the same modelling approach.
-The number of models can be increased, and more complex models can be considered.
+Firstly, we considered only a handful of models, and both the number and complexity of models can be increased. 
 With the approach described here, extra models can be included by running the SMC$^2$ algorithm for each model.
 This has the benefit that the entire experiment does not need to be redesigned/repeated for different combinations of models.
 Different astronomical forcing set-ups can also be considered.
@@ -957,9 +974,11 @@ For example, the astronomical forcing terms are often tested independently.
 This can easily be achieved by setting undesired astronomical scaling terms to 0 in our forced models.
 Making the forcing term state dependent, such that an increase in sea-ice increases albedo , which in turn alters the influence of variation in insolation is also a possibility. \mcr{it is not so much a problem of sea-ice but, for example, the ablation area grows non-linearly with insolation; there are references for this but we can see this later.}
 Finally, we do not need to limit ourselves to a single dataset.
-The observation model can be extendeded to compare the state of the system to multiple cores.
+The observation model can be extended to compare the state of the system to multiple cores.
 Likewise, multivariate observations could be used; SM91 models both ice-volume and CO$_2$ concentration, and records exist for both of these quantities.
 
+
+Overall, we hope that this work acts as a proof of concept. Careful statistical analysis combining data and models can lead to insights in palaeoclimate science.
 
 \clearpage
 
