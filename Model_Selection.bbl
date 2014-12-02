@@ -108,10 +108,6 @@ H.~Jeffreys, {\em The theory of probability}.
 R.~Kass and A.~Raftery, ``Bayes factors,'' {\em Journal of the American
   Statistical Association}, vol.~90, pp.~773--795, 1995.
 
-\bibitem{DelMoral2006}
-P.~Del~Moral, A.~Doucet, and A.~Jasra, ``Sequential {Monte} {C}arlo samplers,''
-  {\em Journal of the Royal Society Series B}, vol.~68, pp.~411--436, 2006.
-
 \bibitem{Gordon1993}
 N.~Gordon, D.~Salmond, and A.~Smith, ``Novel approach to
   nonlinear/non-{G}aussian {B}ayesian state estimation,'' {\em IEEE Proceedings
@@ -123,9 +119,23 @@ C.~Andrieu, A.~Doucet, and R.~Holenstein, ``Particle {M}arkov chain {M}onte
   pp.~269--342, 2010.
 
 \bibitem{Chopin2012}
-N.~Chopin, P.~Jacob, and O.~Papaspiliopoulos, ``{SMC}$^2$: an efficient
-  algorithm for sequential analysis of state-space models,'' 2012.
-\newblock 1101.1528, arXiv.org.
+N.~Chopin, P.~E. Jacob, and O.~Papaspiliopoulos, ``{SMC}$^2$: an efficient
+  algorithm for sequential analysis of state-space models,'' {\em Journal of
+  the Royal Statistical Society: Series B (Statistical Methodology)}, vol.~75,
+  no.~3, pp.~397--426, 2013.
+
+\bibitem{DelMoral2006}
+P.~Del~Moral, A.~Doucet, and A.~Jasra, ``Sequential {Monte} {C}arlo samplers,''
+  {\em Journal of the Royal Society Series B}, vol.~68, pp.~411--436, 2006.
+
+\bibitem{DelMoral2004}
+P.~Del~Moral, {\em Feynman-Kac Formulae}.
+\newblock Springer, 2004.
+
+\bibitem{Andrieu2009}
+C.~Andrieu and G.~O. Roberts, ``The pseudo-marginal approach for efficient
+  {Monte Carlo} computations,'' {\em The Annals of Statistics}, pp.~697--725,
+  2009.
 
 \bibitem{Liu1998}
 J.~Liu and R.~Chen, ``Sequential {M}onte {C}arlo methods for dynamic systems,''

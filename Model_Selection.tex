@@ -575,6 +575,7 @@ As such we relate an observation at time $t$ to the observable component of the 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\clearpage
 \color{black}
 \section{Methodology}
 \label{Sec:Meth}
@@ -609,14 +610,14 @@ The development of Monte Carlo methodology for solving these three problems for 
 
 Here, we demonstrate how the recently introduced SMC$^2$ algorithm \cite{Chopin2012} can be used to estimate model evidences. The technique is not perfect, as it is computationally costly, and results in BF estimates with large variance, but we can think of no other approach for solving this problem, and as we will demonstrate, often the strength of evidence in the data is sufficiently strong so that the estimated BFs are large enough for the estimation variance to be of no impediment to inference.
 
-The approach relies upon the following identities.The evidence can be decomposed as
+The approach relies upon the following identities. The evidence can be decomposed as
 \begin{equation}\label{eqn:Ident1}
 \pi(Y_{1:T}) =\pi(Y_1) \prod \pi(Y_t | Y_{1:t-1})
 \end{equation}
 where we have dropped the dependence on $\mathcal{M}_m$.
 We can further write 
 \begin{equation}\label{eqn:Ident2}
-\pi(Y_t | Y_{1:t-1}) = \int \pi(Y_t | Y_{1:t-1}, \theta) \pi(\theta | Y_{1:t-1}) {\rm d} \theta
+\pi(Y_t | Y_{1:t-1}) = \int \pi(Y_t | Y_{1:t-1}, \theta) \pi(\theta | Y_{1:t-1}) {\rm d} \theta.
 \end{equation}
 SMC$^2$ is then used to find unbiased estimates of $\pi(\theta | Y_{1:t-1})$ and $ \pi(Y_t | Y_{1:t-1}, \theta)$. Remarkably, pluggingg these estimates into Equations (\ref{eqn:Ident1}) and (\ref{eqn:Ident2}) then leads to unbiased estimates of the model evidence.
 
@@ -625,40 +626,30 @@ SMC$^2$ is then used to find unbiased estimates of $\pi(\theta | Y_{1:t-1})$ and
 \rdw{ UPPER OR LOWER CASE Y?}
 
 
-\subsection{Estimating evidences using SMC$^2$}
-
-
-Sequential Monte Carlo (SMC) algorithms use a weighted collection of particles to approximate distributions. By updating the weights and the particles as observations arise, we can
-
-================
-
+\subsection{Estimating model evidence using SMC$^2$}
 
 Sequential Monte Carlo algorithms \cite{DelMoral2006} are population-based sampling methods aimed at obtaining a sample from some target distribution that is difficult to sample from directly.
-A series of intermediary distributions $\{ \pi_t \}_{t=1,...,T}$ are chosen that `close-in' on the target distribution, $\pi_T$, from some easily sampled distribution $\pi_1$. Usually this sequence of distributions is taken to be the sequence formed by adding the data a point at a time.
-First, a collection of particles are sampled from $\pi_1$.
-The particles are then propagated through the intermediary distributions using a combination of importance sampling and resampling.
-The gradual changes between successive intermediary distributions mean that is possible to design efficient proposals at every iteration.
-In other words $\pi_t$ is quite informative about $\pi_{t+1}$, even if $\pi_1$ and $\pi_T$ are dissimilar.
+A series of intermediary distributions $\{ \pi_t \}_{t=1}^T$ are chosen that `close-in' on the target distribution, $\pi_T$, from some easily sampled distribution $\pi_1$. SMC uses a weighted collection of particles to approximate each distribution, and sequentially updates the weights and the particles.
+Usually the sequence of distributions is taken to be the sequence formed by adding the data a point at a time. e.g., $\pi(\theta |y_{1:T})$ or $\pi(x_{t}|y_{1:t})$.
 
-One of the earliest and well known implementations of SMC \cite{Gordon1993} is a collection of algorithms designed to sample from the sequence of filtering distributions $\pi_t = \pi(X_t \vert \theta, Y_{1:t})$,  and the SMC algorithms are termed particle filters (PFs) in this case.
-A widely used PF works as follows.
+One of the earliest and best known SMC algorithms \cite{Gordon1993} is designed  to sample from the sequence of filtering distributions $\pi_t = \pi(X_t \vert \theta, Y_{1:t})$. These algorithms are termed particle filters (PFs) and work as follows.
 First, a sample of $N_x$ particles are sampled from the initial density $\pi (X_1 \vert \theta)$, and given importance weight $\pi (Y_1 \vert X_1, \theta)$.
 These particles are then repeatedly resampled, propagated and weighted, such that for each successive iteration the particles are a weighted sample of the posterior $\pi(X_t \vert \theta, Y_{1:t})$.
-The algorithm is as follows:
+The algorithm is as follows, where superscript $n$ indicates that the operation is performed for  $n = 1,...,N_x$.
 
 \noindent \rule{\textwidth}{1pt}\\
 \noindent {\bf Particle Filter}
 
 \begin{itemize}
 \item {\bf PF 1.} Sample state particles $X_1^n \sim q_1(\cdot \vert \theta, Y_1)$
-\item {\bf PF 2.} Weight state particles
-\[ w_1^n (X_1^n) = \frac{\pi(X_1^n \vert \theta) \pi(Y_1 \vert X_1^n)}{q_1(X_1^n \vert \theta, Y_1)}, \hspace{1cm} W_1^{n} = \frac{w_1^n (X_1^n)}{\sum w_1^n (X_1^n)} \]
+\item {\bf PF 2.} Weight the state particles
+\[ w_1^n (X_1^n) = \frac{\pi(X_1^n \vert \theta) \pi(Y_1 \vert X_1^n)}{q_1(X_1^n \vert \theta, Y_1)}, \hspace{1cm} W_1^{n} = \frac{w_1^n (X_1^n)}{\sum w_1^n (X_1^n)}.\]
 \item {\bf PF 3.} For time index $t=2,...,T$
 \begin{itemize}
-\item {\bf PF 3.1.} Sample ancestor particle index $\mathcal{A}_{t-1}^n \sim \mathcal{F}(W_{t-1}^n)$
-\item {\bf PF 3.2.} Propogate state particles $X_t^n \sim q_t(\cdot \vert X_{t-1}^{\mathcal{A}_{t-1}^n}, \theta, Y_t)$ and extend trajectory $X_{1:t}^n = \left(X_{1:t-1}^{\mathcal{A}_{t-1}^n}, X_t^n \right)$
+\item {\bf PF 3.1.} Resample the ancestor particle index $\mathcal{A}_{t-1}^n \sim \mathcal{F}(W_{t-1}^n)$
+\item {\bf PF 3.2.} Propagate the state particles $X_t^n \sim q_t(\cdot \vert X_{t-1}^{\mathcal{A}_{t-1}^n}, \theta, Y_t)$ and extend trajectory $X_{1:t}^n = \left(X_{1:t-1}^{\mathcal{A}_{t-1}^n}, X_t^n \right)$
 \item {\bf PF 3.3.} Weight state particles
-\[ w_t^n(X_{1:t}^n) = \frac{\pi(X_t^n \vert X_{t-1}^{\mathcal{A}_{t-1}^n}, \theta) \pi(Y_t \vert X_t^n)}{q_t(X_t^n \vert X_{t-1}^{\mathcal{A}_{t-1}^n}, \theta, Y_t)} , \hspace{1cm} W_t^n = \frac{w_t^n (X_{1:t}^n)}{\sum w_t^n (X_{1:t}^n)} \]
+\[ w_t^n(X_{1:t}^n) = \frac{\pi(X_t^n \vert X_{t-1}^{\mathcal{A}_{t-1}^n}, \theta) \pi(Y_t \vert X_t^n)}{q_t(X_t^n \vert X_{t-1}^{\mathcal{A}_{t-1}^n}, \theta, Y_t)} , \hspace{1cm} W_t^n = \frac{w_t^n (X_{1:t}^n)}{\sum w_t^n (X_{1:t}^n)}. \]
 \end{itemize}
 \end{itemize}
 
@@ -666,61 +657,71 @@ The algorithm is as follows:
 
 \vspace{10pt}
 
-\noindent where superscript $n$ indicates that the operation is performed for all $n = 1,...,N_x$.
-Here $\mathcal{F}(W_{t-1}^{1:N_x})$ samples $n = 1,...,N_x$ according to weights $W_{t-1}^n$.
-We use $q_t$ to denote the proposal distribution at time $t$.
+\noindent Here, $\mathcal{F}(W_{t-1}^{1:N_x})$ denotes sampling an index from  $\{ 1,...,N_x\}$ according to weights $\{W_{t-1}^n\}_{n=1}^{N_x}$, and  $q_t$ denotes the proposal distribution at time $t$. Details of the resampling step $\mathcal{F}$ and the proposal distribution  $q_t$ are discussed in section \S.
 
 
 
-An important aspect of the PF is that it provides an unbiased estimate of the marginal likelihood $\pi(Y_{1:T} \vert \theta)$ as follows
-\begin{equation}
-\hat{\pi} (Y_{1:T} \vert \theta) = \hat{\pi}(Y_1) \prod \hat{\pi} (Y_t \vert Y_{1:t-1}, \theta),
+An important aspect of the PF is that an unbiased estimate of $\pi (Y_t \vert Y_{1:t-1}, \theta)$ can be  obtained by averaging over the unnormalised weights in each iteration of the algorithm
+\begin{equation}\label{eqn:Ident4}
+\hat{\pi} (Y_t \vert Y_{1:t-1}, \theta) = \frac{1}{N_x} \sum_{n=1}^{N_x} w_t^n (X_{1:t}^n).
 \end{equation}
-where the components of the product are unbiased estimates of $\pi(Y_t \vert Y_{1:t-1}, \theta)$, obtained by averaging over the unnormalised weights in each iteration of the algorithm
-\begin{equation}
-\hat{\pi} (Y_t \vert Y_{1:t-1}, \theta) = \frac{1}{N_x} \sum w_t^n (X_{1:t}^n).
+and that an unbiased estimator of the marginal likelihood $\pi (Y_{1:t} \vert  \theta)$ can be obtained by plugging these estimates into the identity \cite{DelMoral2004}
+\begin{equation}\label{eqn:Ident3}
+\hat{\pi} (Y_{1:T} \vert \theta) = \hat{\pi}(Y_1) \prod_{t=2}^T \hat{\pi} (Y_t \vert Y_{1:t-1}, \theta).
 \end{equation}
-\noindent It is possible to use these unbiased estimates in place of the corresponding intractable quantities in a number of Monte Carlo algorithms, for example PMCMC \cite{Andrieu2010} and SMC$^2$ \cite{Chopin2012} use this replacement in an MCMC and an SMC framework respectively.
+\cite{Andrieu2009} showed that using these unbiased estimates of the likelihood in other Monte Carlo algorithms can lead to valid Monte Carlo algorithms (termed pseudo-marginal algorithms) for performing parameter estimation. For example, PMCMC \cite{Andrieu2010} uses the PF within an MCMC algorithm, and SMC$^2$ \cite{Chopin2012} uses a PF embedded within an SMC algorithm, both with the aim of finding $\pi(\theta | Y_{1:T})$.
+
 
 The SMC$^2$ algorithm \cite{Chopin2012} embeds the particle filter within an SMC algorithm targetting the sequence of posteriors
 \begin{equation*}
-\pi_0 = \pi(\theta), \hspace{1cm} \pi_t = \pi(\theta, X_{1:t} \vert Y_{1:t}), t \geq 1
+\pi_0 = \pi(\theta), \hspace{1cm} \pi_t = \pi(\theta, X_{1:t} \vert Y_{1:t}),
 \end{equation*}
-This is achieved by sampling $N_\theta$ parameter particles from the prior.
-A PF of $N_x$ particles is attached to each parameter particle, providing unbiased estimates to intractable quantities as the parameter particles are propagated through each intermediary distribution.
-The amount of degeneracy in the importance weights for the parameter particles is monitored by calculating the effective sample size (ESS)
-\begin{equation*}
-\mbox{ESS} = \left( \sum  \left( \Omega^m \right)^2 \right)^{-1}
-\end{equation*}
-\noindent where $\Omega^m$ are the normalised weights.
+for $t=1, \ldots, T$. 
+This is achieved by sampling $N_\theta$ parameter particles, $\{\theta^j\}_{j=1}^{N_\theta}$ from the prior. To each $\theta^j$, we attach a PF of  $N_x$ particles, i.e., at iteration $t$ the PF $\{X_{1:t}^{n,j}, W_t^{n,j}\}_{n=1}^{N_x}$ is associated with $\theta^j$, which provides an unbiased estimate of the marginal likelihood $\pi(y_{1:t} |\theta^j)$ via a version of Equation (\ref{eqn:Ident3}). To assimilate the next observation $y_{t+1}$, we first extend the PF for the X-states to $\{X_{1:t+1}^{n,j}, W_{t+1}^{n,j}\}_{n=1}^{N_x}$, and then estimate $\pi(Y_{1:t+1} | \theta^j)$ etc. 
+Degeneracy occurs when the weighted particle approximation is dominated by just  a few particles (i.e. a few have comparatively large weights).
+It can be monitored by calculating the effective sample size (ESS)\footnote{ESS$ = \left( \sum  \left( \Omega^m \right)^2 \right)^{-1}$ where $\Omega^m$ are the normalised weights.}.
 When the ESS falls below some threshold (usually $N_\theta / 2$) the particles are resampled to discard low-weight particles.
-However, resampling alone would lead to few unique particles in the parameter space.
+However, resampling alone would lead to too few unique particles in the parameter space.
 Particle diversity is improved by running a PMCMC algorithm that leaves $\pi (\theta, X_{1:t} \vert Y_{1:t})$ invariant, specifically the PMMH algorithm \cite{Andrieu2010}.
 The algorithm is given below, but the reader is referred to the original paper for the theoretical justification \cite{Chopin2012}.
-Note that superscript $j$ indicates that the operation is performed for all $j = 1,...,N_{\theta}$, and as before superscript $n$ indicates that the operation is performed for all $n = 1,...,N_x$.
+Superscript $j$ indicates that the operation is performed for all $j = 1,...,N_{\theta}$.
 
 \noindent \rule{\textwidth}{1pt}\\
 \noindent {\bf SMC$^2$}
 
 \begin{itemize}
 \item {\bf SMC$^2$ 1.} Sample parameter particles $\theta^j \sim \pi(\theta)$
-\item {\bf SMC$^2$ 2.} Set importance weights
-\[ \omega^j = 1, \hspace{1cm} \Omega^j = \frac{\omega^j}{\sum \omega^j} \]
+
+\item {\bf SMC$^2$ 2.} Set importance weights $ \Omega^j = \frac{1}{N_\theta}$
+
 \item {\bf SMC$^2$ 3.} For $t=1,...,T$
+
 \begin{itemize}
-\item {\bf SMC$^2$ 3.1.} For each parameter particle $\theta^j$ sample $X_{1:t}^{n,j}$ by performing iteration $t$ of the PF.
-\item {\bf SMC$^2$ 3.2.} Calculate $\hat{\pi} (Y_t \vert Y_{1:t-1}, \theta^j)$ and perform a weighted average over the parameter particles to obtain $\hat{\pi}(Y_t \vert Y_{t-1}) = \sum \Omega^j \hat{\pi} (Y_t \vert Y_{1:t-1}, \theta^j)$
+
+\item {\bf SMC$^2$ 3.1.} For each parameter particle $\theta^j$, extend the associated PF  $\{X_{1:t-1}^{n,j}, W_{t-1}^{n,j}\}_{n=1}^{N_x}$ to  $\{X_{1:t}^{n,j}, W_t^{n,j}\}_{n=1}^{N_x}$ by performing iteration $t$ of the PF.
+
+\item {\bf SMC$^2$ 3.2.} Calculate $\hat{\pi} (Y_t \vert Y_{1:t-1}, \theta^j)$ using Equation (\ref{eqn:Ident4}) and calculate the weighted average over the parameter particles to obtain $$\hat{\pi}(Y_t \vert Y_{t-1}) = \sum_{j=1}^{N_\theta} \Omega^j \hat{\pi} (Y_t \vert Y_{1:t-1}, \theta^j)$$
+
 \item {\bf SMC$^2$ 3.3.} Update the importance weights
 \[ \omega^j = \omega^j \hat{\pi} (Y_t \vert Y_{1:t-1}, \theta^j), \hspace{1cm} \Omega^j = \frac{\omega^j}{\sum \omega^j} \]
-\item {\bf SMC$^2$ 3.4.} If the ESS falls below some threshold
-\begin{itemize}
-\item {\bf SMC$^2$ 3.4.1.} Resample $\left( \theta^j, X_{1:t}^{n,j} \right)^*$ according to weights $\Omega^j$
-\item {\bf SMC$^2$ 3.4.2.} Sample $\left( \theta, X_{1:t} \right)^{**} \sim K \left(\cdot \vert \left( \theta^j, X_{1:t}^{n,j} \right)^* \right)$ where $K$ is a PMCMC kernel that leaves $\pi (\theta, X_{1:t} \vert Y_{1:t})$ invariant.
 
-\item {\bf SMC$^2$ 3.4.3.} Set $\left( \theta^j, X_{1:t}^{1:n,j} \right) \leftarrow \left( \theta, X_{1:t} \right)^{**}$
-\item {\bf SMC$^2$ 3.4.4.} Set importance weights
-\[ \omega^j = 1, \hspace{1cm} \Omega^j = \frac{\omega^j}{\sum \omega^j} \]
+\item {\bf SMC$^2$ 3.4.} If the ESS falls below some threshold,  resample. For $j=1, \ldots, N_\theta$:
+
+\begin{itemize}
+
+\item {\bf SMC$^2$ 3.4.1.} Sample an index
+ J from $\{1, \ldots, N_\theta\}$ %and corresponding PF $\left( \theta^j, \{X_{1:t}^{n,j} ,W_t^n\}_{n=1}^{N_x} \right)$ 
+according to weights $\Omega^j$.
+
+\item {\bf SMC$^2$ 3.4.2.} Sample $\left( \theta, \{X_{1:t}^n, W_t^n\}_{n=1}^{N_x} \right)^{*} \sim K \left(\cdot \vert \left( \theta^J, \{X_{1:t}^{n,J} ,W_t^{n,J}\}_{n=1}^{N_x} \right)\right)$ where $K$ is a PMCMC kernel that leaves $\pi (\theta, X_{1:t} \vert Y_{1:t})$ invariant.
+
+\item {\bf SMC$^2$ 3.4.3.} Set $\left( \theta^j, X_{1:t}^{1:n,j} \right) \leftarrow \left( \theta, X_{1:t} \right)^{*}$
+
+
+
 \end{itemize}
+Set importance weights
+$\Omega^j = \frac{1}{N_\theta}$
 \end{itemize}
 
 \end{itemize}
@@ -730,13 +731,9 @@ Note that superscript $j$ indicates that the operation is performed for all $j =
 \vspace{10pt}
   
  SMC$^2$ naturally provides an estimate of the model evidence.
-The model evidence can be decomposed as 
-\begin{equation}
-\pi(Y_{1:T}) = \pi(Y_1) \prod \pi(Y_t \vert Y_{t-1})
-\end{equation}
-\noindent In each iteration of SMC$^2$ the term 
+The model evidence can be decomposed according to Equation (\ref{eqn:Ident1}), and in each iteration of SMC$^2$, the term 
 \[ \hat{\pi}(Y_t \vert Y_{t-1}) = \sum \Omega^j \hat{\pi} (Y_t \vert Y_{1:t-1}, \theta^j) \]
-\noindent calculated in step {\bf SMC$^2$ 3.2} gives an unbiased estimate of $\pi(Y_t \vert Y_{t-1})$.
+\noindent calculated in step {\bf SMC$^2$ 3.2}, is an unbiased estimate of $\pi(Y_t \vert Y_{t-1})$.
 An estimate of the model evidence is provided by the product of these terms.
 
 
@@ -1024,6 +1021,8 @@ Likewise, multivariate observations could be used; SM91 models both ice-volume a
 
 
 Overall, we hope that this work acts as a proof of concept. Careful statistical analysis combining data and models can lead to insights in palaeoclimate science.
+
+\rdw{Jake: the references need sorting. Initials are being lost in names, as you need to separate them with a space, e.g., R. D. Wilkinson, not R.D. Wilkinson}
 
 \clearpage
 
