@@ -100,15 +100,13 @@ F.~Parrenin and D.~Paillard, ``Terminations {VI} and {VIII} ($\sim$530 and
   triggering of deglaciations,'' {\em Climate of the {P}ast}, vol.~8,
   pp.~2031--2037, 2012.
 
-\bibitem{Andrieu2010}
-C.~Andrieu, A.~Doucet, and R.~Holenstein, ``Particle {M}arkov chain {M}onte
-  {C}arlo methods,'' {\em Journal of the Royal Statistical Society B}, vol.~72,
-  pp.~269--342, 2010.
+\bibitem{Jeffreys1939}
+H.~Jeffreys, {\em The theory of probability}.
+\newblock Oxford University Press, 1939.
 
-\bibitem{Chopin2012}
-N.~Chopin, P.~Jacob, and O.~Papaspiliopoulos, ``{SMC}$^2$: an efficient
-  algorithm for sequential analysis of state-space models,'' 2012.
-\newblock 1101.1528, arXiv.org.
+\bibitem{Kass1995}
+R.~Kass and A.~Raftery, ``Bayes factors,'' {\em Journal of the American
+  Statistical Association}, vol.~90, pp.~773--795, 1995.
 
 \bibitem{DelMoral2006}
 P.~Del~Moral, A.~Doucet, and A.~Jasra, ``Sequential {Monte} {C}arlo samplers,''
@@ -119,6 +117,16 @@ N.~Gordon, D.~Salmond, and A.~Smith, ``Novel approach to
   nonlinear/non-{G}aussian {B}ayesian state estimation,'' {\em IEEE Proceedings
   F}, vol.~140, pp.~107--113, 1993.
 
+\bibitem{Andrieu2010}
+C.~Andrieu, A.~Doucet, and R.~Holenstein, ``Particle {M}arkov chain {M}onte
+  {C}arlo methods,'' {\em Journal of the Royal Statistical Society B}, vol.~72,
+  pp.~269--342, 2010.
+
+\bibitem{Chopin2012}
+N.~Chopin, P.~Jacob, and O.~Papaspiliopoulos, ``{SMC}$^2$: an efficient
+  algorithm for sequential analysis of state-space models,'' 2012.
+\newblock 1101.1528, arXiv.org.
+
 \bibitem{Liu1998}
 J.~Liu and R.~Chen, ``Sequential {M}onte {C}arlo methods for dynamic systems,''
   {\em Journal of the American Statistical Association}, vol.~93,
@@ -128,10 +136,6 @@ J.~Liu and R.~Chen, ``Sequential {M}onte {C}arlo methods for dynamic systems,''
 A.~Golightly and D.~Wilkinson, ``Bayesian inference for nonlinear multivariate
   diffusion models observed with error,'' {\em Computational Statististics \&
   Data Analysis}, vol.~52, pp.~1674--1693, 2008.
-
-\bibitem{Kass1995}
-R.~Kass and A.~Raftery, ``Bayes factors,'' {\em Journal of the American
-  Statistical Association}, vol.~90, pp.~773--795, 1995.
 
 \bibitem{Carson2014}
 J.~Carson, {\em Uncertainty Quantification in Palaeoclimate Reconstruction}.

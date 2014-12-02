@@ -25,6 +25,7 @@ What drives the glacial-interglacial cycle? A Bayesian approach to a long-standi
 \maketitle 
 \mcr{We'll probably have to think about the title but that's not urgent}
 
+\doublespacing
 
 \begin{abstract}
 VERY ROUGH - IGNORE FOR NOW.
@@ -405,21 +406,38 @@ glaciation-deglaciation switch [also in the drift for $X_1$, no?]1.
 
 
 
-\subsection{An observation model}
+\subsection{Statistical observation model}
 
-The final modelling ingredient is a model relating the unobserved 
+The final modelling ingredient is a statistical model relating the unobserved 
 variables, $X_t$, in the dynamical models
-(\dots) to the observed dataset $\left\{ t, Y_t\right\}$. 
+(\dots) to the  dataset.  We assume that the data are of the form $\left\{ \tau_t, Y_t\right\}_{t=1}^T$, where $\tau_t$ is the estimated age and $Y_t$ the measured proxy of the $t^{th}$ data point/slice. 
 We will use the model
 \[ Y_t \sim \mathcal{N} ( d + h X_{1t}, \sigma_y^2), \]
 where $d,h,\sigma_y^2$ are scalar parameters, i.e., each $Y_t$ is a scaled and shifted
 version of the value $X_1t$ of the ice volume variable in the underlying dynamical model,
 observed with noise.
 
+Estimating $\tau_t$ is complex and covered in depth in \cite{???}. Here, in common with most other studies, we treat $\tau_t$ as a given. We comment on the wisdom of this approach in Sections \S.
+
+The other part of the statistical specification is a model discrepancy...
+The statistical model relating model to data consists of two parts. The first relates 
+
+A key assumption in out statistical framework, which is needed to make the problem tractable, is that there is a conditional independence assumption that allows the likelihood to be decomposed as
+
+\begin{eqnarray}
+ \pi(X_{1:T} \vert \theta_m, \mathcal{M}_m) \pi(Y_{1:T} \vert X_{1:T}, \theta_m, \mathcal{M}_m)
+ \propto  \\
+ \pi(\theta_m \vert \mathcal{M}_m) \pi(X_1 \vert \theta_m, \mathcal{M}_m) \prod_{i=1}^{T-1} \pi(X_{i+1} \vert X_i, \theta_m, \mathcal{M}_m) \prod_{i=1}^T \pi(Y_i \vert X_i, \theta_m, \mathcal{M}_m).\nonumber
+\end{eqnarray}
+
+\rdw{I've added the $\tau_t$ notation as a way to emphasise that the ages are estimates, and that $t$ usually refers to an index, rather than a time. I'm not sure I like it yet though.}
+
 \spp{Is this ``scalar'' version general enough for the paper?  We need to sort out
 notation (currently $X_1$ variously denotes first element of vector X, scalar X evaluated at t=1,
 and scalar X evaluated at first time index) - need to talk about this before making a
 decision.}
+
+\rdw{Jake:  Simon has changed $D -> d$, and  $h -> s -> H$. I'm not sure I like this. The change will either need reversing or  following through. I think Simon's reasoning for changing to d and h, is that its easier to present the method for 1d observations, in which case a lower case letter may make more sense. }
 
 \color{gray}
 \section{State Space Models}
@@ -546,80 +564,83 @@ As such we relate an observation at time $t$ to the observable component of the 
 \[ Y_t \sim \mathcal{N} ( D + H X_t, \Sigma_y) \]
 \noindent where $H=(S,{\bf 0})$ scales the output the observable state $X$, and $D$ displaces it.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+% Methodology
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \color{black}
 \section{Methodology}
 \label{Sec:Meth}
 
-\rdw{Ignore this section for now. I'll edit this next}
-
-MOVED
-
-Formally, we have a set of models $\{\mathcal{M}\}_{m=1,...,M}$, where each model $\mathcal{M}_m$ has parameter $\theta_m$.
-A standard Bayesian model selection approach involves first calculating the posterior distribution of the parameters given the set of data $Y_{1:T}$ for each model:
-\begin{equation} \label{Eqn:Bayes}
-\pi(\theta_m \vert Y_{1:T}, \mathcal{M}_m) = \frac{\pi(\theta_m \vert \mathcal{M}_m) \pi(Y_{1:T} \vert \theta_m, \mathcal{M}_m)}{\pi(Y_{1:T} \vert \mathcal{M}_m)},
-\end{equation}
-\noindent where $\pi(\theta_m \vert \mathcal{M}_m)$ is the prior distribution of the parameters given the model.
-For most of the proposed models the likelihood term $\pi(Y_{1:T} \vert \theta_m, \mathcal{M}_m)$ is intractable (meaning it is not available in closed form or it is too computationally expensive to estimate), and so we can not calculate an analytical solution to Equation~\ref{Eqn:Bayes}.
-This also prevents the use of many traditional methods for Bayesian inference, such as Markov chain Monte Carlo (MCMC).
-However, there have recently been numerous methodological advancements for inference in models in which the likelihood term is intractable, particularly for state-space models \cite{Andrieu2010,Chopin2012}.
-The normalising constant $\pi(Y_{1:T} \vert \mathcal{M}_m)$ is termed the model evidence, and is used in evaluating the posterior model probabilities $\pi(\mathcal{M}_m \vert Y_{1:T}) \propto \pi(\mathcal{M}_m) \pi(Y_{1:T} \vert \mathcal{M}_m)$, where $\pi(\mathcal{M}_m)$ is the prior probability of model $\mathcal{M}_m$.
-Thus, a Bayesian model selection approach calibrates the parameters for each model, and indicates which models have the greatest explanatory power.
-
-END OF MOVED MATERIAL
-
-\subsection{Inference in SSMs}
-
-
-We now return to the problem of selecting between multiple models $\{\mathcal{M}_m\}_{m=1,...,M}$, where each model has parameter space $\theta_m$.
-In the context of SSMs a Bayesian inference approach involves estimating the posterior distribution
-
-\begin{eqnarray*}
-\pi(\theta_m, X_{1:t} \vert Y_{1:T}, \mathcal{M}_m) & \propto & \pi(\theta_m \vert \mathcal{M}_m) \pi(X_{1:T} \vert \theta_m, \mathcal{M}_m) \pi(Y_{1:T} \vert X_{1:T}, \theta_m, \mathcal{M}_m)\\
-& \propto & \pi(\theta_m \vert \mathcal{M}_m) \pi(X_1 \vert \theta_m, \mathcal{M}_m) \prod_{i=1}^{T-1} \pi(X_{i+1} \vert X_i, \theta_m, \mathcal{M}_m) \prod_{i=1}^T \pi(Y_i \vert X_i, \theta_m, \mathcal{M}_m),
-\end{eqnarray*}
-
-\noindent for each model $\mathcal{M}_m$.
-For the models of interest the transition densities $\pi(X_{i+1} \vert X_i, \theta_m, \mathcal{M}_m)$ are not available in closed form, and $X_{1:T}$ are only observed through the observations $Y_{1:T}$.
-As such it is impossible to calculate an analytical solution to $\pi(\theta_m, X_{1:t} \vert Y_{1:T}, \mathcal{M}_m)$, and we must rely on approximations.
-Monte Carlo methods can be used to obtain random samples approximating distributions of interest, and have become popular approaches to perfom inference in a wide range of fields, including SSMs.
-Unfortunately, the fact that the likelihood for each model is intractable means that many of the classical Monte Carlo approaches, such as MCMC can not be implemented.
-However, in recent years there has been a lot of development towards inference in SSMs (and models in general) with intractable likelihoods.
-It is not possible to review all of the possible approaches here, instead we describe one approach tailored towards SSMs that can be implemented with little tuning.
-
-For Bayesian model selection we are also interested in obtaining the model evidence $\pi(Y_{1:T} \vert \mathcal{M}_m)$ for each model $m=1,...,M$.
-The ratio of the evidence for two models, say $\mathcal{M}_1$ and $\mathcal{M}_2$ is called the Bayes factor
-
+Our primary aim is model selection: given a collection of competing models $\{\mathcal{M}_m\}_{m=1}^M$ of dataset $y_{1:T}$, which is best supported by the data? 
+The Bayesian approach to model selection uses Bayes factors (BF) \cite{Jeffreys1939, Kass1995}. The BF for comparing two models, $\mathcal{M}_1$ and $\mathcal{M}_2$ say, is the ratio of their evidences
 \begin{equation} \label{Eqn:BF}
-B_{12} = \frac{\pi(Y_{1:T} \vert \mathcal{M}_1)}{\pi(Y_{1:T} \vert \mathcal{M}_2)} = \frac{\pi(\mathcal{M}_1 \vert Y_{1:T}) / \pi(\mathcal{M}_2 \vert Y_{1:T})}{\pi(\mathcal{M}_1) / \pi(\mathcal{M}_2)},
+B_{12} = \frac{\pi(Y_{1:T} \vert \mathcal{M}_1)}{\pi(Y_{1:T} \vert \mathcal{M}_2)},
 \end{equation}
-
-
-\noindent where $\pi(\mathcal{M}_m)$ is the prior for model $\mathcal{M}_m$.
-The Bayes factor summarises the evidence from the data in support of one model over another.
+\noindent where $\pi(Y_{1:T} \vert \mathcal{M}_m)$ is the evidence  for model $\mathcal{M}_m$.
+The Bayes factor summarises the strength of evidence in the data in support of one model over another and is the ratio of the posterior to the prior odds in favour of $\mathcal{M}_1$ over $\mathcal{M}_2$.
 If the prior probabilities for each model are equal then the Bayes factor is equivalent to the ratio of the posterior model probabilities.
-Estimating the Bayes factor is a challenging problem, as first we need to estimate the posterior distribution over the parameters 
-\begin{equation}
-\pi (\theta_m \vert Y_{1:T}, \mathcal{M}_m) = \int \pi(\theta_m, X_{1:t} \vert Y_{1:T}, \mathcal{M}_m) dX_{1:T},
-\end{equation}
-\noindent from which we need to calculate the normalising constant
-\begin{equation}
-\pi (Y_{1:T} \vert \mathcal{M}_m) = \int \pi(\theta_m \vert \mathcal{M}_m) \pi(Y_{1:T} \vert \theta_m, \mathcal{M}_m) d\theta .
-\end{equation}
- 
-\subsection{SMC}
 
-SMC approaches are well suited to our model selection problem; they provide estimates of normalising constants with relative ease, and the selection of tuning parameters can be mostly automated.
-We do not include the theoretical justifications of SMC here, the reader is referred to \cite{DelMoral2006} for an overview.
-SMC approaches are population-based sampling methods aimed at obtaining a sample from some target distribution that is difficult to sample from directly, which will be denoted $\pi_T$.
-A series of intermediary distributions $\{ \pi_t \}_{t=1,...,T}$ are designed that `close-in' on the target distribution from some easily sampled distribution $\pi_1$.
+Secondary aims of our analysis include parameter estimation and filtering, which in this context are often called calibration and climate reconstruction (or hindcasting). Let $\theta_m$ denote the parameter for model $\mathcal{M}_m$. 
+Calibration is the process of finding the posterior distribution of the model parameters $\pi(\theta_m | y_{1:T}, \mathcal{M}_m)$, and filtering is finding the distributions of the state variables $\pi(X_{1:T} | Y_{1:T}, \theta_m, \mathcal{M}_m)$. These three problems are of different levels of difficulty. Filtering is the simplest, but by no means simple. It involves finding the posterior distribution of a high dimensional object $X_{1:T}$ and for non-linear or non-Gaussian models, direct calculation of the filtering distributions is impossible, and so we must instead rely upon approximations.
+Calibration requires that we integrate out the dependence of $X_{1:T}$, 
+\begin{equation}
+\pi (\theta_m \vert Y_{1:T}, \mathcal{M}_m) = \int \pi(\theta_m, X_{1:T} \vert Y_{1:T}, \mathcal{M}_m) {\rm d}X_{1:T},
+\end{equation}
+and so is usually considerably more difficult than filtering. 
+Finally, model selection requires the integration of the dependence on $\theta$, 
+\begin{equation}
+\pi (Y_{1:T} \vert \mathcal{M}_m) = \int \pi(\theta_m \vert \mathcal{M}_m) \pi(Y_{1:T} \vert \theta_m, \mathcal{M}_m) {\rm d}\theta,
+\end{equation}
+and is thus more difficult than calibration. 
+
+
+
+The development of Monte Carlo methodology for solving these three problems for state space models reflects this hierarchy of difficulty. Particle filter methodology, first proposed in the 1990s \cite{Gordon1993}, is able to solve the general filtering problem adequately as long as the dimension of $X$ is not too large. Solving the calibration problem, however,  has  only begun to be satisfactorily answered more recently, with the development of pseudo-marginal methods such as particle-MCMC \cite{Andrieu2010}. Calculating the model evidence is still very much on open problem.
+
+\rdw{We might just be inviting trouble by saying these this.}
+
+Here, we demonstrate how the recently introduced SMC$^2$ algorithm \cite{Chopin2012} can be used to estimate model evidences. The technique is not perfect, as it is computationally costly, and results in BF estimates with large variance, but we can think of no other approach for solving this problem, and as we will demonstrate, often the strength of evidence in the data is sufficiently strong so that the estimated BFs are large enough for the estimation variance to be of no impediment to inference.
+
+The approach relies upon the following identities.The evidence can be decomposed as
+\begin{equation}\label{eqn:Ident1}
+\pi(Y_{1:T}) =\pi(Y_1) \prod \pi(Y_t | Y_{1:t-1})
+\end{equation}
+where we have dropped the dependence on $\mathcal{M}_m$.
+We can further write 
+\begin{equation}\label{eqn:Ident2}
+\pi(Y_t | Y_{1:t-1}) = \int \pi(Y_t | Y_{1:t-1}, \theta) \pi(\theta | Y_{1:t-1}) {\rm d} \theta
+\end{equation}
+SMC$^2$ is then used to find unbiased estimates of $\pi(\theta | Y_{1:t-1})$ and $ \pi(Y_t | Y_{1:t-1}, \theta)$. Remarkably, pluggingg these estimates into Equations (\ref{eqn:Ident1}) and (\ref{eqn:Ident2}) then leads to unbiased estimates of the model evidence.
+
+
+
+\rdw{ UPPER OR LOWER CASE Y?}
+
+
+\subsection{Estimating evidences using SMC$^2$}
+
+
+Sequential Monte Carlo (SMC) algorithms use a weighted collection of particles to approximate distributions. By updating the weights and the particles as observations arise, we can
+
+================
+
+
+Sequential Monte Carlo algorithms \cite{DelMoral2006} are population-based sampling methods aimed at obtaining a sample from some target distribution that is difficult to sample from directly.
+A series of intermediary distributions $\{ \pi_t \}_{t=1,...,T}$ are chosen that `close-in' on the target distribution, $\pi_T$, from some easily sampled distribution $\pi_1$. Usually this sequence of distributions is taken to be the sequence formed by adding the data a point at a time.
 First, a collection of particles are sampled from $\pi_1$.
 The particles are then propagated through the intermediary distributions using a combination of importance sampling and resampling.
 The gradual changes between successive intermediary distributions mean that is possible to design efficient proposals at every iteration.
 In other words $\pi_t$ is quite informative about $\pi_{t+1}$, even if $\pi_1$ and $\pi_T$ are dissimilar.
 
-One of the earliest and well known implementations of SMC is a collection of algorithms designed to sample from the sequence of posterior distributions $\pi_t = \pi(X_t \vert \theta, Y_{1:t})$, where the parameters $\theta$ are assumed known \cite{Gordon1993}.
-This is known as the filtering problem, and the SMC algorithms that have been proposed are termed particle filters (PFs).
+One of the earliest and well known implementations of SMC \cite{Gordon1993} is a collection of algorithms designed to sample from the sequence of filtering distributions $\pi_t = \pi(X_t \vert \theta, Y_{1:t})$,  and the SMC algorithms are termed particle filters (PFs) in this case.
 A widely used PF works as follows.
 First, a sample of $N_x$ particles are sampled from the initial density $\pi (X_1 \vert \theta)$, and given importance weight $\pi (Y_1 \vert X_1, \theta)$.
 These particles are then repeatedly resampled, propagated and weighted, such that for each successive iteration the particles are a weighted sample of the posterior $\pi(X_t \vert \theta, Y_{1:t})$.
@@ -648,6 +669,82 @@ The algorithm is as follows:
 \noindent where superscript $n$ indicates that the operation is performed for all $n = 1,...,N_x$.
 Here $\mathcal{F}(W_{t-1}^{1:N_x})$ samples $n = 1,...,N_x$ according to weights $W_{t-1}^n$.
 We use $q_t$ to denote the proposal distribution at time $t$.
+
+
+
+An important aspect of the PF is that it provides an unbiased estimate of the marginal likelihood $\pi(Y_{1:T} \vert \theta)$ as follows
+\begin{equation}
+\hat{\pi} (Y_{1:T} \vert \theta) = \hat{\pi}(Y_1) \prod \hat{\pi} (Y_t \vert Y_{1:t-1}, \theta),
+\end{equation}
+where the components of the product are unbiased estimates of $\pi(Y_t \vert Y_{1:t-1}, \theta)$, obtained by averaging over the unnormalised weights in each iteration of the algorithm
+\begin{equation}
+\hat{\pi} (Y_t \vert Y_{1:t-1}, \theta) = \frac{1}{N_x} \sum w_t^n (X_{1:t}^n).
+\end{equation}
+\noindent It is possible to use these unbiased estimates in place of the corresponding intractable quantities in a number of Monte Carlo algorithms, for example PMCMC \cite{Andrieu2010} and SMC$^2$ \cite{Chopin2012} use this replacement in an MCMC and an SMC framework respectively.
+
+The SMC$^2$ algorithm \cite{Chopin2012} embeds the particle filter within an SMC algorithm targetting the sequence of posteriors
+\begin{equation*}
+\pi_0 = \pi(\theta), \hspace{1cm} \pi_t = \pi(\theta, X_{1:t} \vert Y_{1:t}), t \geq 1
+\end{equation*}
+This is achieved by sampling $N_\theta$ parameter particles from the prior.
+A PF of $N_x$ particles is attached to each parameter particle, providing unbiased estimates to intractable quantities as the parameter particles are propagated through each intermediary distribution.
+The amount of degeneracy in the importance weights for the parameter particles is monitored by calculating the effective sample size (ESS)
+\begin{equation*}
+\mbox{ESS} = \left( \sum  \left( \Omega^m \right)^2 \right)^{-1}
+\end{equation*}
+\noindent where $\Omega^m$ are the normalised weights.
+When the ESS falls below some threshold (usually $N_\theta / 2$) the particles are resampled to discard low-weight particles.
+However, resampling alone would lead to few unique particles in the parameter space.
+Particle diversity is improved by running a PMCMC algorithm that leaves $\pi (\theta, X_{1:t} \vert Y_{1:t})$ invariant, specifically the PMMH algorithm \cite{Andrieu2010}.
+The algorithm is given below, but the reader is referred to the original paper for the theoretical justification \cite{Chopin2012}.
+Note that superscript $j$ indicates that the operation is performed for all $j = 1,...,N_{\theta}$, and as before superscript $n$ indicates that the operation is performed for all $n = 1,...,N_x$.
+
+\noindent \rule{\textwidth}{1pt}\\
+\noindent {\bf SMC$^2$}
+
+\begin{itemize}
+\item {\bf SMC$^2$ 1.} Sample parameter particles $\theta^j \sim \pi(\theta)$
+\item {\bf SMC$^2$ 2.} Set importance weights
+\[ \omega^j = 1, \hspace{1cm} \Omega^j = \frac{\omega^j}{\sum \omega^j} \]
+\item {\bf SMC$^2$ 3.} For $t=1,...,T$
+\begin{itemize}
+\item {\bf SMC$^2$ 3.1.} For each parameter particle $\theta^j$ sample $X_{1:t}^{n,j}$ by performing iteration $t$ of the PF.
+\item {\bf SMC$^2$ 3.2.} Calculate $\hat{\pi} (Y_t \vert Y_{1:t-1}, \theta^j)$ and perform a weighted average over the parameter particles to obtain $\hat{\pi}(Y_t \vert Y_{t-1}) = \sum \Omega^j \hat{\pi} (Y_t \vert Y_{1:t-1}, \theta^j)$
+\item {\bf SMC$^2$ 3.3.} Update the importance weights
+\[ \omega^j = \omega^j \hat{\pi} (Y_t \vert Y_{1:t-1}, \theta^j), \hspace{1cm} \Omega^j = \frac{\omega^j}{\sum \omega^j} \]
+\item {\bf SMC$^2$ 3.4.} If the ESS falls below some threshold
+\begin{itemize}
+\item {\bf SMC$^2$ 3.4.1.} Resample $\left( \theta^j, X_{1:t}^{n,j} \right)^*$ according to weights $\Omega^j$
+\item {\bf SMC$^2$ 3.4.2.} Sample $\left( \theta, X_{1:t} \right)^{**} \sim K \left(\cdot \vert \left( \theta^j, X_{1:t}^{n,j} \right)^* \right)$ where $K$ is a PMCMC kernel that leaves $\pi (\theta, X_{1:t} \vert Y_{1:t})$ invariant.
+
+\item {\bf SMC$^2$ 3.4.3.} Set $\left( \theta^j, X_{1:t}^{1:n,j} \right) \leftarrow \left( \theta, X_{1:t} \right)^{**}$
+\item {\bf SMC$^2$ 3.4.4.} Set importance weights
+\[ \omega^j = 1, \hspace{1cm} \Omega^j = \frac{\omega^j}{\sum \omega^j} \]
+\end{itemize}
+\end{itemize}
+
+\end{itemize}
+
+\noindent \rule{\textwidth}{1pt}
+
+\vspace{10pt}
+  
+ SMC$^2$ naturally provides an estimate of the model evidence.
+The model evidence can be decomposed as 
+\begin{equation}
+\pi(Y_{1:T}) = \pi(Y_1) \prod \pi(Y_t \vert Y_{t-1})
+\end{equation}
+\noindent In each iteration of SMC$^2$ the term 
+\[ \hat{\pi}(Y_t \vert Y_{t-1}) = \sum \Omega^j \hat{\pi} (Y_t \vert Y_{1:t-1}, \theta^j) \]
+\noindent calculated in step {\bf SMC$^2$ 3.2} gives an unbiased estimate of $\pi(Y_t \vert Y_{t-1})$.
+An estimate of the model evidence is provided by the product of these terms.
+
+
+\subsection{Guided proposals}
+
+A further difficulty arises because for the models of interest, the transition densities $\pi(X_{i+1} \vert X_i, \theta_m, \mathcal{M}_m)$ are not available in closed form, ruling out many approaches a priori. 
+
+
 For problems in which the transition density is intractable the term $\pi(X_t \vert X_{t-1}, \theta)$ needs to cancel in step {\bf PF 3.3}.
 This can achieved by setting $q_t = \pi(X_t \vert X_{t-1}, \theta)$ for $t > 1$, such that proposals are just simulations from the model.
 \mcr{I believe \emph{can} is here crucial. Isn't the essence of the Golighty-Wilkinson proposal to propose an alternative to this proposal,
@@ -693,86 +790,34 @@ X_{t+\Delta t} \sim \mathcal{N} (X_t + \mu \Delta t + \frac{S^2 \Sigma_x \Delta 
 \noindent such that for uninformative observations the proposal is approximately the standard Euler-Maruyama approximation, and for informative observations the value of $X_T$ is drawn from $\mathcal{N}((Y_T-D) \diagup S, \Sigma_y \diagup S^2)$.
 In other words the proposal will be centered on the observation with variance equal to the observation error.
 
-An important aspect of the PF is that it provides an unbiased estimate of the marginal likelihood $\pi(Y_{1:T} \vert \theta)$ as follows
-\begin{equation}
-\hat{\pi} (Y_{1:T} \vert \theta) = \hat{\pi}(Y_1) \prod \hat{\pi} (Y_t \vert Y_{1:t-1}, \theta),
-\end{equation}
-where the components of the product are unbiased estimates of $\pi(Y_t \vert Y_{1:t-1}, \theta)$, obtained by averaging over the unnormalised weights in each iteration of the algorithm
-\begin{equation}
-\hat{\pi} (Y_t \vert Y_{1:t-1}, \theta) = \frac{1}{N_x} \sum w_t^n (X_{1:t}^n).
-\end{equation}
-\noindent It is possible to use these unbiased estimates in place of the corresponding intractable quantities in a number of Monte Carlo algorithms, for example PMCMC \cite{Andrieu2010} and SMC$^2$ \cite{Chopin2012} use this replacement in an MCMC and an SMC framework respectively.
 
-\subsection{SMC$^2$}
 
-\noindent The SMC$^2$ algorithm \cite{Chopin2012} embeds the particle filter within an SMC algorithm targetting the sequence of posteriors
-\begin{equation*}
-\pi_0 = \pi(\theta), \hspace{1cm} \pi_t = \pi(\theta, X_{1:t} \vert Y_{1:t}), t \geq 1
-\end{equation*}
-This is achieved by sampling $N_\theta$ parameter particles from the prior.
-A PF of $N_x$ particles is attached to each parameter particle, providing unbiased estimates to intractable quantities as the parameter particles are propagated through each intermediary distribution.
-The amount of degeneracy in the importance weights for the parameter particles is monitored by calculating the effective sample size (ESS)
-\begin{equation*}
-\mbox{ESS} = \left( \sum  \left( \Omega^m \right)^2 \right)^{-1}
-\end{equation*}
-\noindent where $\Omega^m$ are the normalised weights.
-When the ESS falls below some threshold (usually $N_\theta / 2$) the particles are resampled to discard low-weight particles.
-However, resampling alone would lead to few unique particles in the parameter space.
-Particle diversity is improved by running a PMCMC algorithm that leaves $\pi (\theta, X_{1:t} \vert Y_{1:t})$ invariant, specifically the PMMH algorithm \cite{Andrieu2010}.
-The algorithm is given below, but the reader is referred to the original paper for the theoretical justification \cite{Chopin2012}.
-Note that superscript $j$ indicates that the operation is performed for all $j = 1,...,N_{\theta}$, and as before superscript $n$ indicates that the operation is performed for all $n = 1,...,N_x$.
+\subsection{Further details}
 
-\noindent \rule{\textwidth}{1pt}\\
-\noindent {\bf SMC$^2$}
 
-\begin{itemize}
-\item {\bf SMC$^2$ 1.} Sample parameter particles $\theta^j \sim \pi(\theta)$
-\item {\bf SMC$^2$ 2.} Set importance weights
-\[ \omega^j = 1, \hspace{1cm} \Omega^j = \frac{\omega^j}{\sum \omega^j} \]
-\item {\bf SMC$^2$ 3.} For $t=1,...,T$
-\begin{itemize}
-\item {\bf SMC$^2$ 3.1.} For each parameter particle $\theta^j$ sample $X_{1:t}^{n,j}$ by performing iteration $t$ of the PF.
-\item {\bf SMC$^2$ 3.2.} Calculate $\hat{\pi} (Y_t \vert Y_{1:t-1}, \theta^j)$ and perform a weighted average over the parameter particles to obtain $\hat{\pi}(Y_t \vert Y_{t-1}) = \sum \Omega^j \hat{\pi} (Y_t \vert Y_{1:t-1}, \theta^j)$
-\item {\bf SMC$^2$ 3.3.} Update the importance weights
-\[ \omega^j = \omega^j \hat{\pi} (Y_t \vert Y_{1:t-1}, \theta^j), \hspace{1cm} \Omega^j = \frac{\omega^j}{\sum \omega^j} \]
-\item {\bf SMC$^2$ 3.4.} If the ESS falls below some threshold
-\begin{itemize}
-\item {\bf SMC$^2$ 3.4.1.} Resample $\left( \theta^j, X_{1:t}^{n,j} \right)^*$ according to weights $\Omega^j$
-\item {\bf SMC$^2$ 3.4.2.} Sample $\left( \theta^p, X_{1:t}^{n,j} \right)^{**} \sim K \left(\cdot \vert \left( \theta^j, X_{1:t}^{n,j} \right)^* \right)$ where $K$ is a PMCMC kernel that leaves $\pi (\theta, X_{1:t}^{n} \vert Y_{1:t})$ invariant.
-
-\item {\bf SMC$^2$ 3.4.3.} Set $\left( \theta^j, X_{1:t}^{1:n,j} \right) \leftarrow \left( \theta^j, X_{1:t}^{n,j} \right)^{**}$
-\item {\bf SMC$^2$ 3.4.4.} Set importance weights
-\[ \omega^j = 1, \hspace{1cm} \Omega^j = \frac{\omega^j}{\sum \omega^j} \]
-\end{itemize}
-\end{itemize}
-
-\end{itemize}
-
-\noindent \rule{\textwidth}{1pt}
-
-\vspace{10pt}
-\mcr{I believe we need to give a bit more detail about the 3.4.1 resampling step, I mean, the details (binomial vs residual)}
-\mcr{Step 3.4.3: shouldn't it be:
-\begin{enumerate}
-\item {\bf SMC$^2$ 3.4.3.} Set $\left( \theta^j, X_{1:t}^{1:n,j} \right) \leftarrow \left( \theta^p, X_{1:t}^{n,j} \right)^{**}$?
-\end{enumerate}
-}
-  
 \noindent The tuning parameters are the number of particles $N_\theta$ and $N_x$, and the proposal distributions for the PMCMC steps in {\bf SMC$^2$ 3.4.2.} Typically $N_\theta$ will be decided by the available computational resources.
 A low $N_x$ can be used for early iterations, but must be increased for larger times.
 An insufficient number of state particles will have a negative impact on the PMCMC acceptance rate.
 Automatic calibration of $N_x$ is discussed in \cite{Chopin2012}, where it is suggested that $N_x$ is doubled whenever the acceptance rate of the PMCMC step becomes too small.
 The fact that we have a collection of particles in each iteration allows automated calibration of the PMCMC proposals; for example by using the sample mean and variance to design a sensible random-walk proposal, or independent Gaussian proposals.
 
-SMC$^2$ naturally provides an estimate of the model evidence.
-The model evidence can be decomposed as 
-\begin{equation}
-\pi(Y_{1:T}) = \pi(Y_1) \prod \pi(Y_t \vert Y_{t-1})
-\end{equation}
-\noindent In each iteration of SMC$^2$ the term 
-\[ \hat{\pi}(Y_t \vert Y_{t-1}) = \sum \Omega^j \hat{\pi} (Y_t \vert Y_{1:t-1}, \theta^j) \]
-\noindent calculated in step {\bf SMC$^2$ 3.2} gives an unbiased estimate of $\pi(Y_t \vert Y_{t-1})$.
-An estimate of the model evidence is provided by the product of these terms.
+
+
+For complex models, filtering presents significant challenges, and usually approximate techniques such as 4d-Var, and Kalman filter type algorithms are used.  Can we substitute?
+
+\mcr{I believe we need to give a bit more detail about the 3.4.1 resampling step, I mean, the details (binomial vs residual)}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+% Methodology
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
 \clearpage
