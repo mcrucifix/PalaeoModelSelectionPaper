@@ -30,15 +30,6 @@ L.~Lisiecki, ``Links between eccentricity forcing and the 100,000-year glacial
 P.~Huybers, ``Combined obliquity and precession pacing of late {P}leistocene
   deglaciations,'' {\em Nature}, vol.~480, pp.~229--232, 2011.
 
-\bibitem{Crucifix2012}
-M.~Crucifix, ``Oscillators and relaxation phenomena in {P}leistocene climate
-  theory,'' {\em Transactions of the {P}hilosophical {T}ransactions of the
-  {R}oyal {S}ociety {A}}, vol.~370, pp.~1140--1165, 2012.
-
-\bibitem{Crucifix2013}
-M.~Crucifix, ``Why could ice ages be unpredictable,'' 2013.
-\newblock 1302.1492, arXiv.org.
-
 \bibitem{Cane2006}
 M.~Cane, P.~Braconnot, A.~Clement, H.~Gildor, S.~Joussaume, K.~M., M.~Khodri,
   D.~Paillard, S.~Tett, and E.~Zorita, ``Origin and consequences of cyclic
@@ -49,6 +40,17 @@ M.~Cane, P.~Braconnot, A.~Clement, H.~Gildor, S.~Joussaume, K.~M., M.~Khodri,
 G.~Roe and M.~Allen, ``A comparison of competing explanations for the
   100,000-yr ice age cycle,'' {\em Geophysical {R}esearch {L}etters}, vol.~26,
   pp.~2259--2262, 1999.
+
+\bibitem{Chopin2012}
+N.~Chopin, P.~E. Jacob, and O.~Papaspiliopoulos, ``{SMC}$^2$: an efficient
+  algorithm for sequential analysis of state-space models,'' {\em Journal of
+  the Royal Statistical Society: Series B (Statistical Methodology)}, vol.~75,
+  no.~3, pp.~397--426, 2013.
+
+\bibitem{Andrieu2010}
+C.~Andrieu, A.~Doucet, and R.~Holenstein, ``Particle {M}arkov chain {M}onte
+  {C}arlo methods,'' {\em Journal of the Royal Statistical Society B}, vol.~72,
+  pp.~269--342, 2010.
 
 \bibitem{Shackleton1990}
 N.~Shackleton, A.~Berger, and W.~Peltier, ``An alternative astronomical
@@ -61,44 +63,21 @@ A.~Berger, ``Long term variations of daily insolation and {Q}uaternary climate
   changes,'' {\em Journal of Atmospheric Sciences}, vol.~35, pp.~2362--2367,
   1978.
 
-\bibitem{Saltzman1990}
-B.~Saltzman and K.~Maasch, ``A first-order global model of late {C}enozoic
-  climate,'' {\em Transactions of the Royal Society of Edinburgh: Earth
-  Sciences}, vol.~81, pp.~315--325, 1990.
+\bibitem{Crucifix2012}
+M.~Crucifix, ``Oscillators and relaxation phenomena in {P}leistocene climate
+  theory,'' {\em Transactions of the {P}hilosophical {T}ransactions of the
+  {R}oyal {S}ociety {A}}, vol.~370, pp.~1140--1165, 2012.
 
-\bibitem{Saltzman1991}
-B.~Saltzman and K.~Maasch, ``A first-order global model of late {C}enozoic
-  climate. {II} further analysis based on simplification of the $\mbox{CO}_2$
-  dynamics,'' {\em Climate Dynamics}, vol.~5, pp.~201--210, 1991.
+\bibitem{Kennedy2001}
+M.~C. Kennedy and A.~O'Hagan, ``Bayesian calibration of computer models,'' {\em
+  Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology)}, vol.~63, no.~3, pp.~425--464, 2001.
 
-\bibitem{Hasselmann1976}
-K.~Hasselmann, ``Stochastic climate models,'' {\em Tellus}, vol.~28,
-  pp.~473--485, 1976.
-
-\bibitem{Lindner2004}
-B.~Lindner, A.~Garc\'{i}a-Ojalvo, J. abd~Neiman, and L.~Schimansky-Geier,
-  ``Model experiments on the 100,000-yr glacial cycle,'' {\em Physics Reports},
-  vol.~392, pp.~321--424, 2004.
-
-\bibitem{Crucifix2009}
-M.~Crucifix and J.~Rougier, ``On the use of simple dynamical systems for
-  climate predictions,'' {\em European Physics Journal - Special Topics},
-  vol.~174, pp.~11--31, 2009.
-
-\bibitem{Crucifix2011}
-M.~Crucifix, ``How can a glacial inception be predicted?,'' {\em The Holocene},
-  vol.~21, pp.~831--842, 2011.
-
-\bibitem{Tziperman2006}
-E.~Tziperman, M.~Raymo, P.~Huybers, and C.~Wunsch, ``Consequences of pacing the
-  {P}leistocene 100 kyr ice ages by nonlinear phase locking to {M}ilankovitch
-  forcing,'' {\em Paleoceanography}, vol.~21, p.~PA4206, 2006.
-
-\bibitem{Parrenin2012}
-F.~Parrenin and D.~Paillard, ``Terminations {VI} and {VIII} ($\sim$530 and
-  $\sim$720 kyr {BP}) tell us the importance of obliquity and precession in the
-  triggering of deglaciations,'' {\em Climate of the {P}ast}, vol.~8,
-  pp.~2031--2037, 2012.
+\bibitem{Wilkinson2011}
+R.~D. Wilkinson, M.~Vrettas, D.~Cornford, and J.~E. Oakley, ``Quantifying
+  simulator discrepancy in discrete-time dynamical simulators,'' {\em Journal
+  of agricultural, biological, and environmental statistics}, vol.~16, no.~4,
+  pp.~554--570, 2011.
 
 \bibitem{Jeffreys1939}
 H.~Jeffreys, {\em The theory of probability}.
@@ -112,17 +91,6 @@ R.~Kass and A.~Raftery, ``Bayes factors,'' {\em Journal of the American
 N.~Gordon, D.~Salmond, and A.~Smith, ``Novel approach to
   nonlinear/non-{G}aussian {B}ayesian state estimation,'' {\em IEEE Proceedings
   F}, vol.~140, pp.~107--113, 1993.
-
-\bibitem{Andrieu2010}
-C.~Andrieu, A.~Doucet, and R.~Holenstein, ``Particle {M}arkov chain {M}onte
-  {C}arlo methods,'' {\em Journal of the Royal Statistical Society B}, vol.~72,
-  pp.~269--342, 2010.
-
-\bibitem{Chopin2012}
-N.~Chopin, P.~E. Jacob, and O.~Papaspiliopoulos, ``{SMC}$^2$: an efficient
-  algorithm for sequential analysis of state-space models,'' {\em Journal of
-  the Royal Statistical Society: Series B (Statistical Methodology)}, vol.~75,
-  no.~3, pp.~397--426, 2013.
 
 \bibitem{DelMoral2006}
 P.~Del~Moral, A.~Doucet, and A.~Jasra, ``Sequential {Monte} {C}arlo samplers,''

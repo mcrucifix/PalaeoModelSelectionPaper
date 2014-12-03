@@ -34,6 +34,7 @@ The prevailing viewpoint in palaeoclimate science, is that a single palaeoclimat
 Our aim here is to show  that this is not the case. Recent developments in Monte Carlo methodology, combined with advances in computer power, mean that for a wide class of phenomenological models, we are now able to perform filtering, calibration, and Bayesian model selection.
 Using the SMC$^2$ algorithm of Chopin \etal 2014, combined with Brownian bridge proposals for the state trajectories, we show that even with relatively short time series, it is possible to estimate Bayes factors to sufficient accuracy to be able to select between competing models. 
 %This suggests a new possibility for those working in climate science - careful empirical comparison of competing hyptotheses is now possible....
+
 Our results highlight the problem of using pre-dated palaeoclimate records. By analysing a dataset that has been dated by two different authors, we reach contradictory conclusions, thus indicating that the current practice of first dating a record, and then analysing it to draw scientific conclusions about the dynamics of the system in an independent analysis is ....We conclude that  dating and analysis should be done in a single process....
 
 
@@ -49,34 +50,27 @@ Our results highlight the problem of using pre-dated palaeoclimate records. By a
 \rdw{Michel - the intro is now ready for you to look at - no need to edit the language at this stage, just the message.}
 
 
-The history of the Earth's climate can be inferred by studying proxy measurements from a number of difference sources, including microbes found in sediment and water from ice cores \cite{Lisiecki2005, Huybers2007}.
-A quantity commonly used as a ``proxy measurement'' of the Earth's climate is
+The history of the Earth's climate can be inferred by studying ``proxy measurements'' from a number of difference sources, including microbes found in sediment and water from ice cores \cite{Lisiecki2005, Huybers2007}.
+A quantity commonly used as a proxy measurement of the Earth's climate is
 $\delta^{18}O$, a function of the ratio between oxygen isotopes $^{18}O$ and $^{16}O$. 
-
-EDIT This information can be extracted from formainifera and ice-cores, where the
-variability of $\delta^{18}$O in response to depth indicates the evolution of ice volume and temperature over time.  In
-particular, larger $\delta^{18}O$ in benthic foraminifera shells may result either from lower deep ocean temperature,
-higher continental ice volume or, more likely, a combination of both.  Larger values of $\delta^{18}$O indicate a
-colder climate with greater ice build-up.
-EDIT 
 The $\delta^{18}O$ level in microbes depends on the temperature and
 level of $\delta^{18}O$ in the water at the time the microbes formed, and the level of 
 $\delta^{18}O$ in seawater depends on salinity and global ice volume \cite{Lisiecki2005}.  
 Larger values of $\delta^{18}$O in microbes from 
 core samples broadly indicate a colder climate with greater ice volume.
 Such data suggest that the Earth entered into its current ice-age (characterised by
-persistent ice caps at the poles) approximately 3 million years (Myr) ago [ref?].  Since
+persistent ice caps at the poles) approximately 3 million years  ago (Mya)[ref?].  Since
 then the climate has fluctuated between cold periods, in which glaciers expand, and warm
-periods in which the glaciers retreat.  These are known as glacial--interglacial cycles.  In
-the early Pleistocene---a period from around 2.5 Mya ago until 11 thousand years (kya)
-ago---the average period of the glacial--interglacial cycle was around 40 kyr.  However,
-around 1 Mya ago the average period became around 100 kyr, a change in behaviour known as
+periods in which the glaciers retreat.  This is known as the glacial-interglacial cycle.  In
+the early Pleistocene -- a period from around 2.5 Mya ago until 11 thousand years 
+ago (kya) -- the average period of the glacial-interglacial cycle was around 40 kyr.  However,
+around 1 Mya ago, the average period changed to approximately  100 kyr, a change in behaviour known as
 the mid-Pleistocene transition. There is much interest in the mechanisms underlying the
 100 kyr glacial--interglacial cycles.
 
 
-An important driver of the cycles is the variability in incoming solar
-radiation, termed ``insolation''.  Insolation is variable on account of the geometry of the
+An important driver of the cycles is the  incoming solar
+radiation, termed ``insolation''.  Insolation varies through time on account of the geometry of the
 Earth's orbit; for a historical discussion see \cite{Berger2004}.  The effect of the orbit
 on insolation, known as ``astronomical forcing'', has been studied extensively, following
 from work of Milankovitch [ref] who decomposed the orbit into three orbital characteristics,
@@ -86,14 +80,11 @@ amplitudes in their contribution to insolation.  The relative importance of the
 characteristics to the glacial--interglacial cycles is a topic of ongoing interest
 \cite{Huybers2005,Lisiecki2010,Huybers2011} [any other refs?  Papers that use Rayleigh's R
 stat? see line -12 on p229 of Huybers 2011].  Notably, the 100kyr period of
-glacial--interglacial cycles corresponds closely with the period of the eccentricity cycle,
-even though of the three orbital characteristics eccentricity has the smallest effect on the
-amplitude of insolation variability [adapted from Wiki article on M cylces: it this worded
-appropriately?].  At first this seems counterintuitive, but it is not necessarily
+glacial-interglacial cycles corresponds closely with the period of the eccentricity cycle,
+even though of the three orbital characteristics, the variation in the  eccentricity only accounts for about 2\% of the variation in the insolation.  At first this seems counterintuitive, but it is not necessarily
 surprising: the Earth's climate is a complex dynamical system to which astronomical forcing
 is just an input.  The emergent periodicity is a result of interactions between the forcing
 and climate processes, which may themselves be oscillatory.
-Hence in this paper we consider the Earth's climate as a forced dynamical system.  
 
 
 The literature contains a vast array of models of the Earth's climate, ranging from
@@ -102,22 +93,18 @@ possible, to simple dynamical models that involve few variables and aim only to 
 the main modes of the dynamics; see for example [Crucifix?].  
 The limited nature of the data at our disposal (described later in \S) in addressing the
 above-mentioned goal leads us 
-to favouring simpler phenomenological (consistent with, but not derived from the physical theory of a system) models.  The three models we consider (detailed in \S), each
+to favouring simpler phenomenological models, which are consistent with, but not necessarily derived from the physical theory of a system.  The three models we consider (detailed in \S), each
 involve a variable representing ice volume, and either one or two other variables
 representing other aspects of the climate.  In each model the ice volume is assumed to
 be forced directly by insolation, plus a Brownian motion to describe other extraneous
-forcing (and broadly account for error in the model specification).  
+forcing and broadly account for error in the model specification.  
 
 
-
-The aim of this paper is to demonstrate that an empirical evaluation of various candidate dynamical models and
-to assess the importance of the various orbital characteristics to the
-glacial--interglacial cycle.
-A common viewpoint is that the  information contained in a single record do not
-contain enough information to distinguish between the numerous proposed models
+A common viewpoint is that the  information contained in a single proxy record is not
+sufficient  to distinguish between the numerous proposed models
 \cite{Cane2006,Roe1999}.  
-The phenomenological modelling approach enables us to consider the importance of the astronomical forcing terms as a model selection problem with unknown parameters.
-In other words a number of competing models are proposed and we are interested in determining which model best explains the available data, as well as estimating the values of parameters in each model.
+The aim of this paper is to demonstrate that this is not the case, and that careful  empirical evaluation of  candidate dynamical models is possible, including assessing the importance of the various orbital characteristics to the glacial-interglacial cycle.
+By treating the problem as a model selection problem with unknown parameters, we are able to estimate Bayes factors and analyse the problem in a fully Bayesian manner,  determining which model best explains the  data, as well as estimating the  parameters for each model.
 
 \mcr{This is a tricky point: there is a distinction between
 identifying the dynamics (is there a limit cycle; is the system unstable etc. and
@@ -130,18 +117,16 @@ the physcial information as fairly vague (vague priors on parameters, and a sing
 parameter). }
 
 
-Consequently, the
-statistical challenge that results from these modelling choices is to make 
-inference for partially observed, forced
-non-linear stochastic differential equations (SDEs).  A major challenge in SDE inference 
-is that the transition density, and therefore the likelihood function, is not
-available is closed form, termed ``intractable''.  
-This is problematic for classical Bayesian inference
-techniques such Markov Chain Monte Carlo (MCMC) that require evaluations of the
-likelihood.  A powerful tool for problems with intractable likelihoods is the particle
-filter, and in this paper we employ the state-of-the-art SMC$^2$ approach recently
-introduced by [ref] [perhaps need to say more here].
-SAY MORE
+The statistical challenge
+ is to make 
+inferences using partially observed, forced,
+non-linear stochastic differential equations (SDEs). The two major challenges in SDE inference are  that the transition density, and therefore the likelihood function, is not
+available is closed form, and that the state trajectory is a high dimensional unobserved component that must be imputed in any Monte Carlo algorithm.
+ A powerful tool for time-structured problems with intractable likelihoods is the particle
+filter, and in this paper we employ the  SMC$^2$ approach recently
+introduced by \cite{Chopin2012}, which is a pseudo-marginal algorithm that embeds a particle filter within a sequential Monte Carlo algorithm to do joint state and parameter estimation. A major advantage of SMC$^2$ over  competitor methods, such as particle MCMC \cite{Andrieu2010}, is that it allows for easy estimation of the model evidence. We exploit this to provide estimates of the Bayes factors. 
+
+A naive implementation of SMC$^2$ fails due to extreme particle degeneracy. We show how guided Brownian bridge proposals can be used to maintain particle diversity with evenly distributed weights. When efficiently parallelised on a GPU, this allows inference to be performed in reasonable time (3-4 days for the results in Secion \S??). A surprising result is that even though the Monte Carlo error in our Bayes factor estimates is large, the Bayes factors are sufficiently large, even for short time-seroes of data, that we can still distinguish between the competing models.
 
 
 Before formulating further the statistical problem, we briefly review earlier research that
@@ -176,7 +161,7 @@ models we consider for astronomical forcing, for the Earth's climate
 dynamics, and for the observations.  Section
 \ref{Sec:Meth} includes a formulation of the Bayesian approach and brief review of the
 particle-filter methods that we extensively use.  In Section \ref{Sec:Results} we present 
-a simulation study to assess performance of the algorithms on synthetic data, and an  
+a simulation study to assess the performance of the algorithms on synthetic data, and an  
 analysis of the real $\delta^{18}O$ dataset.  In Section \ref{Sec:Conclusion} we offer
 some thoughts on the practical implementation of the particle-filter methods for such
 problems, discuss the scientific conclusions, and suggest some future directions for
@@ -203,34 +188,37 @@ overstretched}
 \section{Data and models}
 \label{Sec:Data}
 
- Attempts to understand the dynamical behaviour of the palaeoclimate typically involve four components: data consisting of palaeoclimate records;  models of the climate;  drivers/forcings of the climate (such as CO$_2$ emissions, or more pertinently for palaeoclimate, the solar forcing), and  a statistical model relating the three previous components.
+Our approach  to understanding the dynamical behaviour of the palaeoclimate  involves four components: data consisting of palaeoclimate records;  models of the climate;  drivers/forcings of the climate (such as CO$_2$ emissions, or more pertinently for palaeoclimate, the solar forcing), and  a statistical model relating the three previous components.
 
-The aim of this paper  is  to demonstrate  the statistical methodology necessary for combining these components in order to answer the questions we imagine palaeoclimate scientists may wish to ask. That is to say, given some data and a selection of models, we show how to fit these models, and to assess which model is best supported by the data. Scientific aspects of the approach can (and we hope will) be improved upon: different datasets, richer models, and more accurate statistical modelling may all follow. Here, our aim is merely to show that the methodology and computer power is now of sufficiently advanced state that the Bayesian inference problems can be answered.
+The aim of the paper  is  to demonstrate  the statistical methodology necessary for combining these components in order to answer the questions we imagine palaeoclimate scientists may wish to ask. That is to say, given some data and a selection of models, we show how to fit these models, and to assess which model is best supported by the data. Scientific aspects of the approach can (and we hope will) be improved upon by using different datasets, richer models, and a more realistic statistical framework. Here, our aim is merely to show that the methodology and computing power is now of sufficiently advanced state that the Bayesian machinry for inference can be applied and that it is fruitful to do so.
 
-\rdw{Michel - I was aiming to describe the holy trinity diagram you used in Uccle (the triangle of approaches) with the aim of unifying some of them using stats. Its kind of an apologia to stress that this is a proof of concept of the stats. I'm sure it can be improved.}
+\rdw{Michel - I was aiming to describe the holy trinity diagram you used in Uccle (the triangle of approaches) with the aim of unifying some of them using stats. Its kind of an apologia to stress that this is a proof of concept of the stats.}
 
 
 
 \subsection{Data}
 
+\rdw{Jake: do we just use sediment? In which case, some of this discussion can have ice removed}.
+
 The data we will use are based on measurements of $\delta^{18}O$ at different depths in sediment
 and ice cores sampled from various geographical locations [more details?].  In
 climatology, a set of such measurements is known as a ``record'' [?], and an average
 over multiple records  is known as a ``stack''.  The $\delta^{18}O$ in deeper parts of a
-core corresponds to climatic conditions further back in time.  However, beyond monotonicity
+core correspond to climate conditions further back in time.  However, beyond monotonicity,
 there is no simple relationship between core depth and age.  This is because the
-accumulation of sediment [what to say about ice?] results from a combination of 
+accumulation of sediment  results from a combination of 
 complicated physical processes
-including sedimentation (which occurs at at variable rates), erosion, and core
+including sedimentation (which occurs at variable rates), erosion, and core
 compaction.  A model for the relationship between depth and age is known as an ``age
 model'', and many such models have been proposed in the literature [refs].  
 A common stategy in developing an age
 model is to align features of records to important events, such as magnetic reversals,
-whose dates are accurately known from other sources.  Also common is to align features of records to aspects of the
-astronomical forcing [refs], a process known as astronomical tuning.  Investigating age 
-models is beyond the scope of this paper, so we take as a starting point a stack for which
-an age model has already been applied; this gives a data set which is a time series 
-$\left\{ \tau_t, Y_t\right\}$ in which $Y_t$ denotes the level of $\delta^{18}O$ at time $\tau_t$.  
+whose dates are accurately known from other sources.  Also common is to align features to aspects of the
+astronomical forcing [refs], a process known as astronomical tuning.  
+The result of fitting an age model is a dataset $\left\{ \tau_t, Y_t\right\}$ in which $Y_t$ denotes the measurement of $\delta^{18}O$ at time $\tau_t$.  
+Investigating age 
+models is beyond the scope of this paper, so we take as a starting point a stack  which has been dated by other authors. Estimating $\tau_t$ is complex and covered in depth in \cite{???}. Here, in common with most other studies, we treat $\tau_t$ as a given. We comment on the wisdom of this approach in Sections \S.
+\rdw{Should we say something about uncertainty on $\tau_t$ and that we're ignoring it? Perhaps leave this to the conclusion.}
 
 
 
@@ -238,8 +226,8 @@ In this article, we use
 the ODP677 record \cite{Shackleton1990}, shown in Figure~\ref{Fig:Data}.
 ODP677 has been dated both as part of an orbitally tuned scheme \cite{Lisiecki2005}, and a non-orbitally tuned scheme \cite{Huybers2007}. Orbitally tuned data are undesirable when studying the influence of the astronomical forcing, as the forcing itself would be double counted.
 Any results suggesting a strong influence from the astronomical forcing may in fact be highlighting the dating assumptions.
-It is therefore naturally better to use data which has not been orbitally tuned to operate model selection and, in particular, estimate the influence of astronomical factors on the dynamics of glacial interglacial cycles.
-  We focus on the last 780 kyr of this record (since the B-M), which contains 363 observations, and highlight the issues surrounding double counting of the astronomical forcing.
+It is therefore preferable to use data which has not been orbitally tuned in model selection and, in particular, estimate the influence of astronomical factors on the dynamics of the glacial-interglacial cycle.
+  We focus on the last 780 kyr of this record (the last magnetic reversal occured 780 kya, allowing us to date the starting point accurately), which contains 363 observations, and use it to highlight the issues surrounding double counting of the astronomical forcing.
 
 
 
@@ -285,45 +273,52 @@ why we are doing this.}
 Different measures of insolation can be well approximated by a linear combination of precession ($\Pi := e\sin \varpi / a_1$), coprecession ($\tilde{\Pi} := e\cos \varpi / a_2$) and obliquity ($O := (\varepsilon - \varepsilon_0)/b_1$) terms.
 \rdw{Jake, can you add a v. brief layman's explanation of each here.}
 Precession, coprecession and obliquity themselves are well approximated by a sum of sines and cosines, the values of which are provided in \cite{Berger1978a}.
-The astronomical forcing can therefore be represented as:
+The astronomical forcing can therefore be represented as
 \begin{equation}
 F(\gamma_P,\gamma_C,\gamma_E) = \gamma_P \bar{\Pi} + \gamma_C \bar{\tilde{\Pi}} +\gamma_E \bar{O}
 \end{equation}
-\noindent where $\bar{\Pi}$, $\bar{\tilde{\Pi}}$ and $\bar{O}$ represent the precession, coprecession and obliquity signals scaled to have unit variance.
-65\textdegree N insolation at the summer solstice is recovered by setting $\gamma_P=0.8949$, $\gamma_C=0$ and $\gamma_E=0.4346$.
-\rdw{This needs an explanatory statement - why is this important?}
+\noindent where $\bar{\Pi}$, $\bar{\tilde{\Pi}}$ and $\bar{O}$ represent the precession, coprecession and obliquity signals scaled to have unit variance. The insolation at 65\textdegree N on  the summer solstice is recovered by setting $\gamma_P=0.8949$, $\gamma_C=0$ and $\gamma_E=0.4346$.
+This quantity is felt to be particularly influential on the glacial cycle, as it determines the degree of warming of the oceans, which controls the extent of the sea ice in the winter.
 Pure precession, coprecession or obliquity signals can be recovered by setting the other scaling parameters to 0.
 
 \subsection{Phenomenological models of climate dynamics}
 
-The three models that we consider for underlying climate dynamics are as follows.  Each
-model has a component, $X_1$, representing global ice volume, and one or two other
-components representing glaciation state.  Each models the glacial--interglacial cycle
+We cibsuder three models for the climate dynamics. They were each originally proposed as low order ordinary differential equations, with state vector $x$ where the first component $x_{(1)}$ represents  global ice volume. The other
+components represent other quantities such as  glaciation state or CO$_2$ concentration. In order to account for model errors, we convert the models into stochastic differential equation by the addition of a Brownian motion $W_t$.  Each model models the glacial-interglacial cycle
 using a qualitatively different dynamical mechanism [right?], as explained further below 
 [need to add more explanation below].  For an overview of oscillators in palaeoclimate modelling see
 \cite{Crucifix2012}).
 
+\rdw{Should we add some of Jake's useful text on relaxation osciallators?
+
+For phenomenological models of the glacial-interglacial cycle the system dynamics are commonly represented by oscillators, and in particular relaxation oscillators (for an overview of oscillators in palaeocliamte modelling see \cite{Crucifix2012}).
+Oscillators are systems that undergo self sustaining oscillations in absence of any external forcing.
+Relaxation oscillators are a particular kind of oscillator characterised by a relaxation process, in which the system is attracted to some region of phase-space, followed by a switch to a destabilisation process that ejects the system from its current relaxation state.
+Following the destabilisation the system enters another (possibly the same) relaxation state, continuing the cycle.
+}
+
+
 \subsubsection*{Model SM91: Saltzmann and Maasch (1991)}
 \begin{eqnarray*}
-dX_1 & = & -\left( X_1 + X_2 + v X_3 + F(\gamma_P,\gamma_C,\gamma_E) \right)dt + \sigma_1 dW_1 \\
-dX_2 & = & \left( r X_2 - p X_3 - s X_2^2 - X_2^3 \right)dt + \sigma_2 dW_2 \\
-dX_3 & = & -q \left( X_1 + X_3 \right) dt + \sigma_3 dW_3
+dX_{(1)} & = & -\left( X_{(1)} + X_{(2)} + v X_{(3)} + F(\gamma_P,\gamma_C,\gamma_E) \right)dt + \sigma_1 dW_{(1)} \\
+dX_{(2)} & = & \left( r X_{(2)} - p X_{(3)} - s X_{(2)}^2 - X_{(2)}^3 \right)dt + \sigma_2 dW_{(2)} \\
+dX_{(3)} & = & -q \left( X_{(1)} + X_{(3)} \right) dt + \sigma_3 dW_{(3)}
 \end{eqnarray*}
 This models glacial--interglacial cycles as a forced van der Pol oscillator [ref?] with the
-variables subjected to Brownian motion.  Variables $X_2$ and $X_3$ respectively represent 
+variables subjected to Brownian motion.  Variables $X_{(2)}$ and $X_{(3)}$ respectively represent 
 CO2 concentration [in
-what?] and deep-sea ocean temperature.  [Need to define parameters and give interpretation of them] Example trajectories are shown in Figure [? - comment].
+what?] and deep-sea ocean temperature.   Example trajectories are shown in Figure [? - comment].
 
 \subsubsection*{Model T06: [authors, year] }
 \begin{eqnarray*}
-dX_1 & = & \left( \left(p_0 - K X_1 \right) \left(1 - \alpha X_2 \right) - \left(s + F(\gamma_P,\gamma_C,\gamma_E) \right) \right) dt + \sigma_1 dW_1 \\
-  X_2 & : & \mbox{ switches from } 0 \mbox{ to } 1 \mbox{              when $X_1$ exceeds some threshold $X_\text{u}$} \\
-  X_2 & : & \mbox{ switches from } 1 \mbox{ to } 0 \mbox{              when $X_1$ decreases below $X_\text{l}$}
+dX_{(1)} & = & \left( \left(p_0 - K X_{(1)} \right) \left(1 - \alpha X_{(2)} \right) - \left(s + F(\gamma_P,\gamma_C,\gamma_E) \right) \right) dt + \sigma_1 dW_{(1)} \\
+  X_{(2)} & : & \mbox{ switches from } 0 \mbox{ to } 1 \mbox{              when $X_{(1)}$ exceeds some threshold $T_u$} \\
+  X_{(2)} & : & \mbox{ switches from } 1 \mbox{ to } 0 \mbox{              when $X_{(1)}$ decreases below $T_l$}
 \end{eqnarray*}
 
-This is an example of a ``hybrid'' model coupling $X_1$, which is governed by a stochastic differential equation, 
-to a binary indicator variable $X_2$ representing absence (0) or presence (1) of Arctic sea ice.  Variable 
-$X_2$ switches values when $X_1$ passes through threshold values that that are different for the $0 \rightarrow 1$ and
+This is an example of a ``hybrid'' model coupling $X_{(1)}$, which is governed by a stochastic differential equation, 
+to a binary indicator variable $X_{(2)}$ representing absence (0) or presence (1) of Arctic sea ice.  Variable 
+$X_{(2)}$ switches values when $X_{(1)}$ passes through threshold values that that are different for the $0 \rightarrow 1$ and
 $1 \rightarrow 0$ switches, introducing ``hysteresis'' which causes strong phase locking to insolation.  [Description
 of params].  Figure [] shows examples trajectories [comment].
 
@@ -335,14 +330,14 @@ only go so far as the defns of the various quantities seem quite arbitrary.  Wha
 scaling and truncation of the forcing?  *The defn needs checking* }
 
 \begin{eqnarray*}
-  dX_1 &= &-(\gamma_P \Pi^{\dag} + \gamma_C \tilde{\Pi}^{\dag} + \gamma_E \bar{O} - a_g + (a_g+a_d+X_1/\tau)X_2)dt + \sigma_1 dW_1, \\ 
-  X_2 & : & \mbox{ switches from } 0 \mbox{ to } 1 \mbox{ when $F(\kappa_P,\kappa_C,\kappa_E)$ is less than some
+  dX_{(1)} &= &-(\gamma_P \Pi^{\dag} + \gamma_C \tilde{\Pi}^{\dag} + \gamma_E \bar{O} - a_g + (a_g+a_d+X_{(1)}/\tau)X_{(2)})dt + \sigma_1 dW_{(1)}, \\ 
+  X_{(2)} & : & \mbox{ switches from } 0 \mbox{ to } 1 \mbox{ when $F(\kappa_P,\kappa_C,\kappa_E)$ is less than some
 threshold $v_\text{l}$} \\
-X_2 & : & \mbox{ switches from } 1 \mbox{ to } 0 \mbox{ when  $F(\kappa_P,\kappa_C,\kappa_E) + X_1$ is greater than some $v_\text{u}$}
+X_{(2)} & : & \mbox{ switches from } 1 \mbox{ to } 0 \mbox{ when  $F(\kappa_P,\kappa_C,\kappa_E) + X_{(1)}$ is greater than some $v_\text{u}$}
 \end{eqnarray*}
-
-where $\Pi^{\dag}$ and $\tilde{\Pi}^{\dag}$ are transformed precession and coprecession components defined as [needs
-explanation as this seems totally arbitrary!]
+where $\Pi^{\dag}$ and $\tilde{\Pi}^{\dag}$ are transformed precession and coprecession components defined as 
+\spp{needs
+explanation as this seems totally arbitrary! Could we move the forcing description to the previous section, so that it is presented as some transformation of $F$ from before, to keep the separation of models from forcings?}
 \begin{eqnarray*}
   \Pi^{\dag} & = & (f(\bar{\Pi}) - 0.148) \diagup 0.808 \\
 \tilde{\Pi}^{\dag} & = & (f(\bar{\tilde{\Pi}}) - 0.148) \diagup 0.808,
@@ -367,30 +362,20 @@ glaciation-deglaciation switch [also in the drift for $X_1$, no?]1.
   trajectories are shown in Figure [] [comments]
 
 
+\rdw{Jake: Can you add the references back that have been list in the editing.}
 
 \subsection{Statistical observation model}
 
-The final modelling ingredient is a statistical model relating the unobserved 
-variables, $X_t$, in the dynamical models
-(\dots) to the  dataset.  We assume that the data are of the form $\left\{ \tau_t, Y_t\right\}_{t=1}^T$, where $\tau_t$ is the estimated age and $Y_t$ the measured proxy of the $t^{th}$ data point/slice. 
-We will use the model
-\[ Y_t \sim \mathcal{N} ( d + h X_{1t}, \sigma_y^2), \]
-where $d,h,\sigma_y^2$ are scalar parameters, i.e., each $Y_t$ is a scaled and shifted
-version of the value $X_1t$ of the ice volume variable in the underlying dynamical model,
-observed with noise.
+The final modelling ingredient is a statistical model relating the unobserved state
+variables in the dynamical models,  $X_t$, to the  dataset.  We assume that the data are of the form $\left\{ \tau_t, Y_t\right\}_{t=1}^T$, where $\tau_t$ is the estimated age and $Y_t$ the measured proxy of the $t^{th}$ data point/slice. 
+We use the model
+\[ Y_t \sim \mathcal{N} ( d + H X_{1t}, \Sigma_y^2), \]
+Here we use $H=(s, 0,\ldots, 0)$, so that $Y_t$ is a scaled and shifted
+version of the value $X_{(1)t}$, the ice volume in the underlying dynamical model. However, vector observations can be used at no additional cost or complication to the methodology, allowing us to add in observations of other proxies if desired.
 
-Estimating $\tau_t$ is complex and covered in depth in \cite{???}. Here, in common with most other studies, we treat $\tau_t$ as a given. We comment on the wisdom of this approach in Sections \S.
 
-The other part of the statistical specification is a model discrepancy...
-The statistical model relating model to data consists of two parts. The first relates 
+This is the measurement process, which relates true $\delta^{18}O$ to measured  $\delta^{18}O$. The second part of the statistical specification is the model discrepancy. This describes the relationship between the imperfect dynamical model and true climate. To account for this error, we have added a white noise term to the models as described above. More complex discrepancy models may be sensible \cite{Kennedy2001, Wilkinson2011}, and in particular, red noise may be a more appropriate choice. \rdw{Michel: do we have a reference for this?}
 
-A key assumption in out statistical framework, which is needed to make the problem tractable, is that there is a conditional independence assumption that allows the likelihood to be decomposed as
-
-\begin{eqnarray}
- \pi(X_{1:T} \vert \theta_m, \mathcal{M}_m) \pi(Y_{1:T} \vert X_{1:T}, \theta_m, \mathcal{M}_m)
- \propto  \\
- \pi(\theta_m \vert \mathcal{M}_m) \pi(X_1 \vert \theta_m, \mathcal{M}_m) \prod_{i=1}^{T-1} \pi(X_{i+1} \vert X_i, \theta_m, \mathcal{M}_m) \prod_{i=1}^T \pi(Y_i \vert X_i, \theta_m, \mathcal{M}_m).\nonumber
-\end{eqnarray}
 
 \rdw{I've added the $\tau_t$ notation as a way to emphasise that the ages are estimates, and that $t$ usually refers to an index, rather than a time. I'm not sure I like it yet though.}
 
@@ -400,131 +385,6 @@ and scalar X evaluated at first time index) - need to talk about this before mak
 decision.}
 
 \rdw{Jake:  Simon has changed $D -> d$, and  $h -> s -> H$. I'm not sure I like this. The change will either need reversing or  following through. I think Simon's reasoning for changing to d and h, is that its easier to present the method for 1d observations, in which case a lower case letter may make more sense. }
-
-\color{gray}
-\section{State Space Models}
-\label{Sec:Models}
-%Describe SSMs and list the models we are using
-%To do: Write out PP12 equations.
-Describe different dynamics: T06 (Van der Pol), PP12 (Flushing), SM91 (Hysterisis).
-
-
-The low-order dynamical models that have been proposed can be represented as SSMs, which describe the evolution of the system and how to relate observations to the system.
-The evolution of the system is represented by a hidden (not directly observed) Markov process $X_{1:T}$, where $t=1,...,T$ are observation times.
-This Markov process can be fully described by initial density $\pi (X_1 \vert \theta)$, and transition density
-\begin{equation}
-\pi (X_{t+1} \vert X_{1:t}, \theta) = \pi (X_{t+1} \vert X_t, \theta), \hspace{1cm} t \geq 1 ,
-\end{equation}
-\noindent for some parameter $\theta$.
-For phenomenological models of the glacial-interglacial cycle the system dynamics are commonly represented by oscillators, and in particular relaxation oscillators (for an overview of oscillators in palaeocliamte modelling see \cite{Crucifix2012}).
-Oscillators are systems that undergo self sustaining oscillations in absence of any external forcing.
-Relaxation oscillators are a particular kind of oscillator characterised by a relaxation process, in which the system is attracted to some region of phase-space, followed by a switch to a destabilisation process that ejects the system from its current relaxation state.
-Following the destabilisation the system enters another (possibly the same) relaxation state, continuing the cycle.
-
-
-Saltzmann proposed that the glacial-interglacial cycle could be modelled as an oscillating system synchronised on the astronomical forcing \cite{Saltzman1990,Saltzman1991}, and many models have since followed this approach \cite{Crucifix2012,Crucifix2013}.
-
-
-
-The climate is an incredibly complex system, with physical processes occuring over a wide range of timescales.
-One can not hope to capture the complexity of the climate using phenomenological models.
-It is important to account for the discrepancy between the relatively simple models and the complex system under study.
-This is often achieved by including stochastic contributions in the model, which approximate processes on smaller timescales than are modelled explicitly \cite{Hasselmann1976}.
-Such models can then be represented as stochastic differential equations of the form
-\[ dX = \mu (X,F(\gamma_P,\gamma_C,\gamma_E),\theta) dt + \Sigma^{\frac{1}{2}}_x (X,\theta) dW, \]
-\noindent where $\mu$ is called the drift and $\Sigma^{\frac{1}{2}}_x dW$ is called the volatility.
-In the context of this article $\mu$ is a set of equations representing a relaxation oscillator forced by $F$, which is some representation of the astronomical forcing.
-$W$ is a standard multivariate Brownian motion, approximating physical processes that occur over small timescales.
-Introducing stochastic components in to relaxation oscillators has a number of effects \cite{Lindner2004}.
-The random fluctuations mean that two runs of the model in general lead to different trajectories.
-This has obvious implications regarding the predictability of glacial cycles \cite{Crucifix2009,Crucifix2011}.
-Some predictability is maintained due to the system synchronising on the astronomical forcing, but experiments show that additive noise can notably influence the timing of glacial inceptions and terminations in these models \cite{Crucifix2012}.
-
-Here we consider 3 phenomenological models from the literature.
-The reader is referred to the original papers for interpretations of the parameters.
-
-\vspace{0.5cm}
-
-{\bf SM91}
-\begin{eqnarray*}
-dX_1 & = & -\left( X_1 + X_2 + v X_3 + F(\gamma_P,\gamma_C,\gamma_E) \right)dt + \sigma_1 dW_1 \\
-dX_2 & = & \left( r X_2 - p X_3 - s X_2^2 - X_2^3 \right)dt + \sigma_2 dW_2 \\
-dX_3 & = & -q \left( X_1 + X_3 \right) dt + \sigma_3 dW_3
-\end{eqnarray*}
-
-SM91 \cite{Saltzman1991} is one of the first models to model glacial cycles as an oscillating system synchronised on the astronomical forcing.
-It describes the evolution of ice volume ($X_1$), carbon dioxide concentration ($X_2$), and deep-ocean temperature ($X_3$).
-SM91 was proposed by Saltzmann and Maasch as a modification to the earlier SM90 \cite{Saltzman1990}, which included alternate carbon-dioxide cycle dynamics.
-Non-linearity is introduced through the carbon dioxide equation, which is the cause of the oscillations.
-
-\vspace{0.5cm}
-
-{\bf T06}
-\begin{eqnarray*}
-dX_1 & = & \left( \left(p_0 - K X_1 \right) \left(1 - \alpha X_2 \right) - \left(s + F(\gamma_P,\gamma_C,\gamma_E) \right) \right) dt + \sigma_1 dW_1 \\
-X_2 & : & \mbox{ switches from } 0 \mbox{ to } 1 \mbox{              when $X_1$ exceeds some threshold $X_u$} \\
-X_2 & : & \mbox{ switches from } 1 \mbox{ to } 0 \mbox{              when $X_1$ decreases below $X_l$}
-\end{eqnarray*}
-
-T06 \cite{Tziperman2006}.
-is an example of a hybrid model, as it combines a differential equation and a discrete variable.
-$X_1$ again represents ice-volume.
-$X_2$ represents the absence (0) or presence (1) of Arctic sea-ice.
-This model was used to demonstrate nonlinear phase locking to the astronomical forcing, and to highlight that a good fit to the ice volume record can be obtained as long as the glacial mechanism is strongly nonlinear.
-
-
-\vspace{0.5cm}
-
-{\bf PP12}
-
-
-
-\vspace{12pt}
-First define a truncation function:
-\[ f(x) = \left\{
-  \begin{array}{l l}
-    x + \sqrt{4a^2 + x^2} - 2a & \quad \text{if $x > 0$}\\
-    x & \quad \text{otherwise}
-  \end{array} \right.\]
-
-\noindent with parameter $a$.
-Define rescaled precession and coprecession parameters
-\begin{eqnarray*}
-\Pi^{\dag} & = & (f(\bar{\Pi}) - 0.148) \diagup 0.808 \\
-\tilde{\Pi}^{\dag} & = & (f(\bar{\tilde{\Pi}}) - 0.148) \diagup 0.808,
-\end{eqnarray*}
-\noindent and a rule defining the transtion between glacial states ($g$) and interglacial states ($d$)
-\[ \left\{
-  \begin{array}{l l}
-    d \rightarrow g & \quad \text{if $\kappa_P \bar{\Pi} + \kappa_C \bar{\tilde{\Pi}} + \kappa_E \bar{O} < v_1$}\\
-    g \rightarrow d & \quad \text{if $\kappa_P \bar{\Pi} + \kappa_C \bar{\tilde{\Pi}} + \kappa_E \bar{O} + X_1 > v_0$}
-  \end{array} \right.\]
-\noindent The ice volume then evolves according to
-\[ dX_1 = -(\gamma_P \Pi^{\dag} + \gamma_C \tilde{\Pi}^{\dag} + \gamma_E \bar{O} - A)dt + \sigma_1 dW_1, \]
-\noindent where
-\[ A = \left\{
-  \begin{array}{l l}
-    - a_d - \frac{X_1}{\tau} & \quad \text{if in state $d$}\\
-    a_g & \quad \text{if in state $g$}
-  \end{array} \right.\]
-
-PP12 \cite{Parrenin2012} has distinct glaciation and deglaciation phases.
-During the glaciation phase ice volume increases according to variation in insolation.
-Due to the truncation of the forcing in the ice volume equation this model responds nonlinearly to variation in insolation.
-During the deglatiation phase the system relaxes towards a deglatiated state.
-The phase changes occur mainly due to the astronomical forcing, with ice volume only appearing in the glaciation-deglaciation switch.
-
-The second component of a SSM relates observations to the system.
-The hidden Markov process is indirectly observed at discrete time intervals according to an observation process with density 
-\begin{equation}
-\pi (Y_t \vert Y_{1:t-1}, X_{1:t}, \theta) = \pi (Y_t \vert X_t, \theta), \hspace{1cm} t \geq 1 .
-\end{equation}
-\noindent The state variables used in phenomenological models are often abstractions of physical quantities.
-As a result the output of each model needs to be scaled and shifted in order to make a comparison with observations of $\delta^{18}$O.
-The observation error also needs to be taken in to account.
-As such we relate an observation at time $t$ to the observable component of the model using the observation process
-\[ Y_t \sim \mathcal{N} ( D + H X_t, \Sigma_y) \]
-\noindent where $H=(S,{\bf 0})$ scales the output the observable state $X$, and $D$ displaces it.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -766,6 +626,9 @@ The fact that we have a collection of particles in each iteration allows automat
 
 
 For complex models, filtering presents significant challenges, and usually approximate techniques such as 4d-Var, and Kalman filter type algorithms are used.  Can we substitute?
+
+
+GPU computation and timings needed.
 
 \mcr{I believe we need to give a bit more detail about the 3.4.1 resampling step, I mean, the details (binomial vs residual)}
 
