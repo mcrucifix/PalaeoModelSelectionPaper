@@ -1,34 +1,67 @@
 \begin{thebibliography}{10}
 
-\bibitem{Lisiecki2005}
-L.~Lisiecki and M.~Raymo, ``A pliocene-pleistocene stack of 57 globally
-  distributed benthic $\delta^{18}${O} records,'' {\em Paleoceanography},
-  vol.~20, p.~PA1003, 2005.
+\bibitem{emiliani55}
+C.~Emiliani, ``Pleistocene temperatures,'' {\em J. Geol.}, vol.~63, p.~538,
+  1955.
 
-\bibitem{Huybers2007}
-P.~Huybers, ``Glacial variability over the last two million years: an extended
-  depth-derived agemodel, continuous obliquity pacing, and the pleistocene
-  progression,'' {\em Quaternary Science Reviews}, vol.~26, pp.~37--55, 2007.
+\bibitem{shackleton67}
+N.~J. Shackleton, ``Oxygen isotope analyses and {P}leistocene temperatures
+  re-assessed,'' {\em Nature}, vol.~215, 1967.
 
-\bibitem{Berger2004}
-A.~Berger and M.~Loutre, ``Astronomical theory of climate change,'' {\em
-  Journal de Physique IV}, vol.~121, pp.~1--35, 2004.
+\bibitem{Shackleton84ab}
+N.~J. Shackleton, J.~Backman, H.~Zimmerman, D.~V. Kent, M.~A. Hall, D.~G.
+  Roberts, D.~Schnitker, J.~G. Baldauf, A.~Desprairies, R.~Homrighausen,
+  P.~Huddlestun, J.~B. Keene, A.~J. Kaltenback, K.~A.~O. Krumsiek, A.~C.
+  Morton, J.~W. Murray, and J.~Westberg-Smith, ``Oxygen isotope calibration of
+  the onset of ice-rafting and history of glaciation in the north atlantic
+  region,'' {\em Nature}, vol.~307, pp.~620--623, 02 1984.
+
+\bibitem{Ruddiman86}
+W.~F. Ruddiman, M.~Raymo, and A.~McIntyre, ``Matuyama 41, 000-year cycles:
+  {N}orth {A}tlantic {O}cean and northern hemisphere ice sheets,'' {\em Earth
+  and Planetary Science Letters}, vol.~80, pp.~117--129, 1986.
+
+\bibitem{milankovitch41_original}
+M.~Milankovitch, {\em Kanon der Erdbestrahlung und Seine Anwendung auf das
+  Eiszeitenproblem (Canon of insolation and the ice-age problem)}.
+\newblock Belgrad: K{\"o}nlishe Serbische Akademie, 1941.
+
+\bibitem{milankovitch41}
+M.~Milankovitch, {\em Canon of insolation and the ice-age problem}.
+\newblock Beograd: Narodna biblioteka Srbije, 1998.
+
+\bibitem{Berger1978a}
+A.~Berger, ``Long term variations of daily insolation and {Q}uaternary climate
+  changes,'' {\em Journal of Atmospheric Sciences}, vol.~35, pp.~2362--2367,
+  1978.
+
+\bibitem{Laskar04aa}
+J.~Laskar, P.~Robutel, F.~Joutel, F.~Boudin, M.~Gastineau, A.~C.~M. Correia,
+  and B.~Levrard, ``A long-term numerical solution for the insolation
+  quantities of the {E}arth,'' {\em Astronomy and Astrophysics}, vol.~428,
+  pp.~261--285, 2004.
+
+\bibitem{Abe-Ouchi13aa}
+A.~Abe-Ouchi, F.~Saito, K.~Kawamura, M.~E. Raymo, J.~Okuno, K.~Takahashi, and
+  H.~Blatter, ``Insolation-driven 100,000-year glacial cycles and hysteresis of
+  ice-sheet volume,'' {\em Nature}, vol.~500, pp.~190--193, 08 2013.
+
+\bibitem{Berger05aa}
+A.~Berger, J.~L. Melice, and M.~F. Loutre, ``On the origin of the 100-kyr
+  cycles in the astronomical forcing,'' {\em Paleoceanography}, vol.~20,
+  no.~PA4019, 2005.
 
 \bibitem{Hays1976}
 J.~Hays, J.~Ibrie, and N.~Shackleton, ``Variations in the {E}arth's orbit:
   pacemaker of the ice ages.,'' {\em Science}, vol.~194, pp.~1121--1132, 1976.
 
-\bibitem{Huybers2005}
-P.~Huybers and C.~Wunsch, ``Oliquity pacing of late {P}leistocene
-  terminations,'' {\em Nature}, vol.~434, pp.~491--494, 2005.
+\bibitem{Ruddiman06aa}
+W.~F. Ruddiman, ``Ice-driven {CO}$_2$ feedback on ice volume,'' {\em Climate of
+  the Past}, vol.~2, pp.~43--55, 2006.
 
-\bibitem{Lisiecki2010}
-L.~Lisiecki, ``Links between eccentricity forcing and the 100,000-year glacial
-  cycle,'' {\em Nature {G}eoscience}, vol.~3, pp.~349--352, 2010.
-
-\bibitem{Huybers2011}
-P.~Huybers, ``Combined obliquity and precession pacing of late {P}leistocene
-  deglaciations,'' {\em Nature}, vol.~480, pp.~229--232, 2011.
+\bibitem{Crucifix2013}
+M.~Crucifix, ``Why could ice ages be unpredictable,'' 2013.
+\newblock 1302.1492, arXiv.org.
 
 \bibitem{Cane2006}
 M.~Cane, P.~Braconnot, A.~Clement, H.~Gildor, S.~Joussaume, K.~M., M.~Khodri,
@@ -52,21 +85,67 @@ C.~Andrieu, A.~Doucet, and R.~Holenstein, ``Particle {M}arkov chain {M}onte
   {C}arlo methods,'' {\em Journal of the Royal Statistical Society B}, vol.~72,
   pp.~269--342, 2010.
 
+\bibitem{Huybers2005}
+P.~Huybers and C.~Wunsch, ``Oliquity pacing of late {P}leistocene
+  terminations,'' {\em Nature}, vol.~434, pp.~491--494, 2005.
+
+\bibitem{Lisiecki2010}
+L.~Lisiecki, ``Links between eccentricity forcing and the 100,000-year glacial
+  cycle,'' {\em Nature {G}eoscience}, vol.~3, pp.~349--352, 2010.
+
+\bibitem{Huybers2011}
+P.~Huybers, ``Combined obliquity and precession pacing of late {P}leistocene
+  deglaciations,'' {\em Nature}, vol.~480, pp.~229--232, 2011.
+
 \bibitem{Shackleton1990}
 N.~Shackleton, A.~Berger, and W.~Peltier, ``An alternative astronomical
   calibration of the lower {P}leistocene timescale based on {ODP} site 677,''
   {\em Transactions of the {R}oyal {S}ociety of {E}dinburgh: {E}arth
   {S}ciences}, vol.~81, pp.~251--261, 1990.
 
-\bibitem{Berger1978a}
-A.~Berger, ``Long term variations of daily insolation and {Q}uaternary climate
-  changes,'' {\em Journal of Atmospheric Sciences}, vol.~35, pp.~2362--2367,
-  1978.
+\bibitem{Lisiecki2005}
+L.~Lisiecki and M.~Raymo, ``A pliocene-pleistocene stack of 57 globally
+  distributed benthic $\delta^{18}${O} records,'' {\em Paleoceanography},
+  vol.~20, p.~PA1003, 2005.
 
-\bibitem{Crucifix2012}
-M.~Crucifix, ``Oscillators and relaxation phenomena in {P}leistocene climate
-  theory,'' {\em Transactions of the {P}hilosophical {T}ransactions of the
-  {R}oyal {S}ociety {A}}, vol.~370, pp.~1140--1165, 2012.
+\bibitem{Huybers2007}
+P.~Huybers, ``Glacial variability over the last two million years: an extended
+  depth-derived agemodel, continuous obliquity pacing, and the pleistocene
+  progression,'' {\em Quaternary Science Reviews}, vol.~26, pp.~37--55, 2007.
+
+\bibitem{imbrie80}
+J.~Imbrie and J.~Z. Imbrie, ``Modelling the climatic response to orbital
+  variations,'' {\em Science}, vol.~207, pp.~943--953, 1980.
+
+\bibitem{Saltzman1990}
+B.~Saltzman and K.~Maasch, ``A first-order global model of late {C}enozoic
+  climate,'' {\em Transactions of the Royal Society of Edinburgh: Earth
+  Sciences}, vol.~81, pp.~315--325, 1990.
+
+\bibitem{Loutre04}
+M.~F. Loutre, D.~Paillard, F.~Vimeux, and E.~Cortijo, ``Does mean annual
+  insolation have the potential to change the climate?,'' {\em Earth Planet.
+  Sc. Lett.}, vol.~221, pp.~1--14, 2004.
+
+\bibitem{paillard98}
+D.~Paillard, ``The timing of {P}leistocene glaciations from a simple
+  multiple-state climate model,'' {\em Nature}, vol.~391, pp.~378--381, 1998.
+
+\bibitem{Parrenin2012}
+F.~Parrenin and D.~Paillard, ``Terminations {VI} and {VIII} ($\sim$530 and
+  $\sim$720 kyr {BP}) tell us the importance of obliquity and precession in the
+  triggering of deglaciations,'' {\em Climate of the {P}ast}, vol.~8,
+  pp.~2031--2037, 2012.
+
+\bibitem{Tziperman2006}
+E.~Tziperman, M.~Raymo, P.~Huybers, and C.~Wunsch, ``Consequences of pacing the
+  {P}leistocene 100 kyr ice ages by nonlinear phase locking to {M}ilankovitch
+  forcing,'' {\em Paleoceanography}, vol.~21, p.~PA4206, 2006.
+
+\bibitem{Imbrie11aa}
+J.~Z. Imbrie, A.~Imbrie-Moore, and L.~E. Lisiecki, ``A phase-space model for
+  pleistocene ice volume,'' {\em Earth and Planetary Science Letters},
+  vol.~307, pp.~94--102, 7 2011.
 
 \bibitem{Kennedy2001}
 M.~C. Kennedy and A.~O'Hagan, ``Bayesian calibration of computer models,'' {\em
@@ -118,5 +197,17 @@ A.~Golightly and D.~Wilkinson, ``Bayesian inference for nonlinear multivariate
 \bibitem{Carson2014}
 J.~Carson, {\em Uncertainty Quantification in Palaeoclimate Reconstruction}.
 \newblock PhD thesis, University of Nottingham, 2014.
+
+\bibitem{SHACKLETON90aa}
+N.~J. Shackleton, A.~Berger, and W.~R. Peltier, ``An alternative astronomical
+  calibration of the lower {P}leistocene timescale based on {ODP} site 677,''
+  {\em Transactions of the Royal Society of Edinburgh-Earth Sciences}, vol.~81,
+  pp.~251--261, 1990.
+
+\bibitem{Elderfield12aa}
+H.~Elderfield, P.~Ferretti, M.~Greaves, S.~Crowhurst, I.~N. McCave, D.~Hodell,
+  and A.~M. Piotrowski, ``Evolution of ocean temperature and ice volume through
+  the mid-pleistocene climate transition,'' {\em Science}, vol.~337, no.~6095,
+  pp.~704--709, 2012.
 
 \end{thebibliography}
